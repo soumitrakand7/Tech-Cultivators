@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kisan/Home/Slider_Home.dart';
 
+import '../krishi_yojana/yojana_list.dart';
+
 
 class Home extends StatelessWidget {
   Home({
@@ -50,7 +52,16 @@ class Home extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   column("assets/images/investing.png", "बाजारभाव"),
-                  column("assets/images/handshake.png", " कृषी योजना"),
+                  InkWell(
+                    onTap: (){
+                      Navigator.push(
+                                       context,
+                                      MaterialPageRoute(
+                                       builder: (context) =>
+                                        YojanaList()    )
+                                            );
+                    },
+                    child: column("assets/images/handshake.png", " कृषी योजना")),
                   column("assets/images/virus.png", "वनस्पती रोग")
                 ],
               ),
@@ -99,27 +110,24 @@ class Home extends StatelessWidget {
 }
 
 Widget column(String image, String text) {
-  return InkWell(
-    onTap: () {},
-    child: Column(
-      children: [
-        Container(
-          margin: EdgeInsets.only(right: 10, left: 10, top: 10, bottom: 10),
-          width: 100,
-          height: 100,
-          decoration: BoxDecoration(
-              color: Colors.white,
-              // border: Border.all(color: Colors.green, width: 3),
-              // borderRadius: BorderRadius.circular(30),
-              image: DecorationImage(
-                  image: AssetImage(image), fit: BoxFit.contain)),
-        ),
-        Text(
-          text,
-          style: TextStyle(
-              color: Colors.green, fontWeight: FontWeight.w600, fontSize: 17),
-        ),
-      ],
-    ),
+  return Column(
+    children: [
+      Container(
+        margin: EdgeInsets.only(right: 10, left: 10, top: 10, bottom: 10),
+        width: 80,
+        height: 80,
+        decoration: BoxDecoration(
+            color: Colors.white,
+            // border: Border.all(color: Colors.green, width: 3),
+            // borderRadius: BorderRadius.circular(30),
+            image: DecorationImage(
+                image: AssetImage(image), fit: BoxFit.contain)),
+      ),
+      Text(
+        text,
+        style: TextStyle(
+            color: Colors.green, fontWeight: FontWeight.w600, fontSize: 17),
+      ),
+    ],
   );
 }
