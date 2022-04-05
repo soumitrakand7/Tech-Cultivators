@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kisan/Home/Slider_Home.dart';
 
-
 class Home extends StatelessWidget {
   Home({
     Key? key,
@@ -40,18 +39,20 @@ class Home extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  column("assets/images/weather.png", "हवामान"),
-                  column("assets/images/news-paper.png", " कृषी वार्ता"),
-                  column("assets/images/Krushi_Salla.jpg", "क्रुशी सल्ला")
+                  column("assets/images/weather.png", "हवामान", context),
+                  column(
+                      "assets/images/news-paper.png", " कृषी वार्ता", context),
+                  column(
+                      "assets/images/Krushi_Salla.jpg", "क्रुशी सल्ला", context)
                 ],
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  column("assets/images/investing.png", "बाजारभाव"),
-                  column("assets/images/handshake.png", " कृषी योजना"),
-                  column("assets/images/virus.png", "वनस्पती रोग")
+                  column("assets/images/investing.png", "बाजारभाव", context),
+                  column("assets/images/handshake.png", " कृषी योजना", context),
+                  column("assets/images/virus.png", "वनस्पती रोग", context)
                 ],
               ),
               SizedBox(
@@ -98,28 +99,25 @@ class Home extends StatelessWidget {
   }
 }
 
-Widget column(String image, String text) {
-  return InkWell(
-    onTap: () {},
-    child: Column(
-      children: [
-        Container(
-          margin: EdgeInsets.only(right: 10, left: 10, top: 10, bottom: 10),
-          width: 100,
-          height: 100,
-          decoration: BoxDecoration(
-              color: Colors.white,
-              // border: Border.all(color: Colors.green, width: 3),
-              // borderRadius: BorderRadius.circular(30),
-              image: DecorationImage(
-                  image: AssetImage(image), fit: BoxFit.contain)),
-        ),
-        Text(
-          text,
-          style: TextStyle(
-              color: Colors.green, fontWeight: FontWeight.w600, fontSize: 17),
-        ),
-      ],
-    ),
+Widget column(String image, String text, context) {
+  return Column(
+    children: [
+      Container(
+        margin: EdgeInsets.only(right: 10, left: 10, top: 10, bottom: 10),
+        width: MediaQuery.of(context).size.width / 4,
+        height: 100,
+        decoration: BoxDecoration(
+            color: Colors.white,
+            // border: Border.all(color: Colors.green, width: 3),
+            // borderRadius: BorderRadius.circular(30),
+            image:
+                DecorationImage(image: AssetImage(image), fit: BoxFit.contain)),
+      ),
+      Text(
+        text,
+        style: TextStyle(
+            color: Colors.green, fontWeight: FontWeight.w600, fontSize: 17),
+      ),
+    ],
   );
 }
