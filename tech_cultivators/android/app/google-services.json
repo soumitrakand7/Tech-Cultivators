@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "74020701314",
+    "project_id": "tech-cultivators",
+    "storage_bucket": "tech-cultivators.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:74020701314:android:2895fdd55b73c501f1609b",
+        "android_client_info": {
+          "package_name": "com.example.kisan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "74020701314-gfjq25e3ssdup6msaj57at4nfj4erc3l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuBGfsu_dGx4VxalYdQZVvxKsr9pfmcSQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "74020701314-gfjq25e3ssdup6msaj57at4nfj4erc3l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

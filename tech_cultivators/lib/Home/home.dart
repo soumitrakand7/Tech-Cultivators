@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:kisan/Home/Slider_Home.dart';
 
+<<<<<<< HEAD
+=======
+import '../krishi_yojana/yojana_list.dart';
+
+
+>>>>>>> af0058a07f41410bab496f1846e45fcf6844069b
 class Home extends StatelessWidget {
   Home({
     Key? key,
@@ -50,9 +56,18 @@ class Home extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  column("assets/images/investing.png", "बाजारभाव", context),
-                  column("assets/images/handshake.png", " कृषी योजना", context),
-                  column("assets/images/virus.png", "वनस्पती रोग", context)
+                  column("assets/images/investing.png", "बाजारभाव"),
+                  InkWell(
+                    onTap: (){
+                      Navigator.push(
+                                       context,
+                                      MaterialPageRoute(
+                                       builder: (context) =>
+                                        YojanaList()    )
+                                            );
+                    },
+                    child: column("assets/images/handshake.png", " कृषी योजना")),
+                  column("assets/images/virus.png", "वनस्पती रोग")
                 ],
               ),
               SizedBox(
@@ -99,19 +114,33 @@ class Home extends StatelessWidget {
   }
 }
 
+<<<<<<< HEAD
 Widget column(String image, String text, context) {
+=======
+Widget column(String image, String text) {
+>>>>>>> af0058a07f41410bab496f1846e45fcf6844069b
   return Column(
     children: [
       Container(
         margin: EdgeInsets.only(right: 10, left: 10, top: 10, bottom: 10),
+<<<<<<< HEAD
         width: MediaQuery.of(context).size.width / 4,
         height: 100,
+=======
+        width: 80,
+        height: 80,
+>>>>>>> af0058a07f41410bab496f1846e45fcf6844069b
         decoration: BoxDecoration(
             color: Colors.white,
             // border: Border.all(color: Colors.green, width: 3),
             // borderRadius: BorderRadius.circular(30),
+<<<<<<< HEAD
             image:
                 DecorationImage(image: AssetImage(image), fit: BoxFit.contain)),
+=======
+            image: DecorationImage(
+                image: AssetImage(image), fit: BoxFit.contain)),
+>>>>>>> af0058a07f41410bab496f1846e45fcf6844069b
       ),
       Text(
         text,
