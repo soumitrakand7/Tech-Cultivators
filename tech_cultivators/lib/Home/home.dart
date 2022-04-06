@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kisan/Home/Slider_Home.dart';
 
+import '../krishi_salla/crop_list.dart';
 import '../krishi_yojana/yojana_list.dart';
 
 
@@ -44,7 +45,18 @@ class Home extends StatelessWidget {
                 children: [
                   column("assets/images/weather.png", "हवामान"),
                   column("assets/images/news-paper.png", " कृषी वार्ता"),
-                  column("assets/images/Krushi_Salla.jpg", "क्रुशी सल्ला")
+                  InkWell(
+                    onTap: (){
+                       Navigator.push(
+                                       context,
+                                      MaterialPageRoute(
+                                       builder: (context) =>
+                                        CropList()    
+                                        )
+                                            );
+                    
+                    },
+                    child: column("assets/images/Krushi_Salla.jpg", "क्रुशी सल्ला"))
                 ],
               ),
               Row(
