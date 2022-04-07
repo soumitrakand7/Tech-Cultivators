@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kisan/Home/Slider_Home.dart';
+import 'package:kisan/labours/options.dart';
 
 import '../krishi_salla/crop_list.dart';
 import '../krishi_yojana/yojana_list.dart';
@@ -16,6 +17,22 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.green,
         elevation: 30,
+        actions: [
+          IconButton(
+              icon: Icon(
+                Icons.play_circle_outline,
+                color: Colors.white,
+              ),
+              onPressed: (){
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context)=> Options()
+                        )
+                    );
+              }
+          )
+        ],
         title: Center(
           child: Text("Tech Cultivators"),
         ),
