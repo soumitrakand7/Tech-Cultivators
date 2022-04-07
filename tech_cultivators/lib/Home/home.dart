@@ -6,7 +6,7 @@ import 'package:kisan/Weather/Weather.dart';
 import '../krishi_yojana/yojana_list.dart';
 
 class Home extends StatelessWidget {
-  Home({
+  const Home({
     Key? key,
   }) : super(key: key);
   @override
@@ -16,10 +16,10 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.green,
         elevation: 30,
-        title: Center(
+        title: const Center(
           child: Text("Tech Cultivators"),
         ),
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(20),
             bottomRight: Radius.circular(20),
@@ -32,11 +32,11 @@ class Home extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               slider(),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Row(
@@ -45,8 +45,10 @@ class Home extends StatelessWidget {
                 children: [
                   InkWell(
                       onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => Weather()));
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Weather()));
                       },
                       child: column(
                           "assets/images/weather.png", "हवामान", context)),
@@ -66,7 +68,7 @@ class Home extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => YojanaList()));
+                                builder: (context) => const YojanaList()));
                       },
                       child: column("assets/images/handshake.png",
                           " कृषी योजना", context)),
@@ -75,13 +77,13 @@ class Home extends StatelessWidget {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => Detection()));
+                                builder: (context) => const Detection()));
                       },
                       child: column(
                           "assets/images/virus.png", "वनस्पती रोग", context))
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 90,
               ),
               MaterialButton(
@@ -91,14 +93,14 @@ class Home extends StatelessWidget {
                   Navigator.pushNamed(context, "/Buy_home");
                 },
                 shape: RoundedRectangleBorder(
-                    side: BorderSide(color: Colors.black),
+                    side: const BorderSide(color: Colors.black),
                     borderRadius: BorderRadius.circular(50)),
-                child: Text(
+                child: const Text(
                   "Buy",
                   style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               MaterialButton(
@@ -110,7 +112,7 @@ class Home extends StatelessWidget {
                 color: Colors.green,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50)),
-                child: Text(
+                child: const Text(
                   "Sell",
                   style: TextStyle(
                       color: Colors.white,
@@ -130,7 +132,7 @@ Widget column(String image, String text, BuildContext context) {
   return Column(
     children: [
       Container(
-        margin: EdgeInsets.only(right: 10, left: 10, top: 10, bottom: 10),
+        margin: const EdgeInsets.only(right: 10, left: 10, top: 10, bottom: 10),
         width: MediaQuery.of(context).size.width / 4,
         height: 80,
         decoration: BoxDecoration(
@@ -142,7 +144,7 @@ Widget column(String image, String text, BuildContext context) {
       ),
       Text(
         text,
-        style: TextStyle(
+        style: const TextStyle(
             color: Colors.green, fontWeight: FontWeight.w600, fontSize: 17),
       ),
     ],

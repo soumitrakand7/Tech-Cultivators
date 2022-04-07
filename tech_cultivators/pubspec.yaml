@@ -44,6 +44,7 @@ dependencies:
   flutter_staggered_animations: ^1.0.0
   html: ^0.15.0
   http: ^0.13.4
+  avatar_glow: ^2.0.2
   syncfusion_flutter_pdfviewer: ^20.1.47-beta
 
 dev_dependencies:

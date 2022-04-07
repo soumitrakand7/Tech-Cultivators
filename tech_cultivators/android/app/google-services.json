@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "74020701314",
+    "firebase_url": "https://tech-cultivators-default-rtdb.firebaseio.com",
     "project_id": "tech-cultivators",
     "storage_bucket": "tech-cultivators.appspot.com"
   },
@@ -13,6 +14,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "74020701314-hukb0qv1jp52m3dt610jtvp12jh0m0ti.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kisan",
+            "certificate_hash": "bac462ed8167d1d033fe214a2e0100fb2a6f7a5d"
+          }
+        },
         {
           "client_id": "74020701314-gfjq25e3ssdup6msaj57at4nfj4erc3l.apps.googleusercontent.com",
           "client_type": 3
