@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:kisan/Disease_detection/detection.dart';
+import 'package:kisan/Home/Drawer.dart';
 import 'package:kisan/Home/Slider_Home.dart';
-
+import 'package:kisan/Weather/Weather.dart';
 import '../krishi_yojana/yojana_list.dart';
 
 class Home extends StatelessWidget {
   Home({
     Key? key,
   }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.green,
         elevation: 30,
@@ -24,7 +26,7 @@ class Home extends StatelessWidget {
           ),
         ),
       ),
-      drawer: Container(),
+      drawer: MainDrawer(),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
@@ -41,7 +43,13 @@ class Home extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  column("assets/images/weather.png", "हवामान", context),
+                  InkWell(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) => Weather()));
+                      },
+                      child: column(
+                          "assets/images/weather.png", "हवामान", context)),
                   column(
                       "assets/images/news-paper.png", " कृषी वार्ता", context),
                   column(
@@ -62,19 +70,26 @@ class Home extends StatelessWidget {
                       },
                       child: column("assets/images/handshake.png",
                           " कृषी योजना", context)),
-                  column("assets/images/virus.png", "वनस्पती रोग", context)
+                  InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Detection()));
+                      },
+                      child: column(
+                          "assets/images/virus.png", "वनस्पती रोग", context))
                 ],
               ),
               SizedBox(
-                height: 50,
+                height: 90,
               ),
               MaterialButton(
                 minWidth: double.infinity,
                 height: 60,
-                onPressed: () {},
-                // onPressed: () {
-                //   Navigator.pushNamed(context, "/Login_page_User");
-                // },
+                onPressed: () {
+                  Navigator.pushNamed(context, "/Buy_home");
+                },
                 shape: RoundedRectangleBorder(
                     side: BorderSide(color: Colors.black),
                     borderRadius: BorderRadius.circular(50)),
@@ -89,7 +104,9 @@ class Home extends StatelessWidget {
               MaterialButton(
                 minWidth: double.infinity,
                 height: 60,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, "/Shop_Registartion");
+                },
                 color: Colors.green,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(50)),

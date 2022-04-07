@@ -1,7 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:kisan/Buy/Buy_home.dart';
 import 'package:kisan/Home/home.dart';
-
+import 'package:kisan/Sell/Add_Products.dart';
+import 'package:kisan/Sell/Shop_registration.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,7 +22,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Home(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => Home(),
+        "/Shop_Registartion": (context) => Shop_Registration(),
+        "/Buy_home": (context) => Buy_home(),
+        "/Add_Product": (context) => Add_Product()
+      },
     );
   }
 }
