@@ -13,9 +13,9 @@ class Add_Product extends StatefulWidget {
 }
 
 class _Add_ProductState extends State<Add_Product> {
-  // FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
-  // final CollectionReference collectionReference =
-  //     FirebaseFirestore.instance.collection("Sanket");
+  FirebaseFirestore db = FirebaseFirestore.instance;
+  final CollectionReference collectionReference =
+      FirebaseFirestore.instance.collection("Shpos");
   List<String> Nursary = [
     'Blossom Valley',
     'Evergreen',
@@ -30,7 +30,10 @@ class _Add_ProductState extends State<Add_Product> {
     "Plants"
   ];
   var SelectedCategory;
-  var SelectedNursery;
+  var SelectedShop;
+  bool issale = false;
+  String Password = "";
+
   @override
   Widget build(BuildContext context) {
     TextEditingController _productName = TextEditingController();
@@ -39,7 +42,7 @@ class _Add_ProductState extends State<Add_Product> {
     TextEditingController _productPrice = TextEditingController();
     TextEditingController _ProductDetail = TextEditingController();
     TextEditingController _productCategory = TextEditingController();
-    bool issale = false;
+    TextEditingController _Password = TextEditingController();
 
     final _key = GlobalKey<FormState>();
     return Scaffold(
@@ -78,7 +81,7 @@ class _Add_ProductState extends State<Add_Product> {
                 child: DropdownButton(
                   hint:
                       Text("Select your Shop", style: TextStyle(fontSize: 18)),
-                  value: SelectedNursery,
+                  value: SelectedShop,
                   dropdownColor: Color.fromARGB(255, 197, 243, 206),
                   elevation: 20,
                   isExpanded: true,
@@ -89,7 +92,7 @@ class _Add_ProductState extends State<Add_Product> {
                   ),
                   onChanged: (newValueSelected) {
                     setState(() {
-                      SelectedNursery = newValueSelected;
+                      SelectedShop = newValueSelected;
                     });
                   },
                   items: Nursary.map((Nursary) {
@@ -143,89 +146,75 @@ class _Add_ProductState extends State<Add_Product> {
                 ),
               ),
               SizedBox(
-                height: 10,
+                height: 20,
+              ),
+
+              data("Password", "Enter password of selected shop", false,
+                  _Password),
+              SizedBox(
+                height: 20,
+              ),
+
+              Column(
+                children: [
+                  data(
+                      " ProductName", "Enter ProductName", false, _productName),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  data(" ProductPrice", "Enter Product Price", false,
+                      _productPrice),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  data(" ProductDetail", "Enter deatail description of product",
+                      false, _ProductDetail),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  data(
+                    "Image",
+                    "Upload image of product",
+                    false,
+                    _productImage,
+                  ),
+                ],
               ),
 
               SizedBox(
                 height: 20,
               ),
-              data(" ProductName", "Enter ProductName", false, _productName),
+
               SizedBox(
                 height: 20,
               ),
-              data(
-                "Image",
-                "Enter product Network Image",
-                false,
-                _productImage,
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              data(
-                  " ProductPrice", "Enter Product Price", false, _productPrice),
-              SizedBox(
-                height: 20,
-              ),
-              data(" ProductDetail", "Enter deatail description of product",
-                  false, _ProductDetail),
-              SizedBox(
-                height: 20,
-              ),
-              // SwitchListTile(
-              //     contentPadding: EdgeInsets.fromLTRB(30, 0, 10, 0),
-              //     title: Text(
-              //       "Is product on sale ?",
-              //       style: TextStyle(fontSize: 18),
-              //     ),
-              //     value: issale,
-              //     onChanged: (issale) {
-              //       setState(() {
-              //         issale = true;
-              //       });
-              //     }),
-              SizedBox(
-                height: 50,
-              ),
-              Container(
-                  color: Colors.green,
-                  height: 50,
-                  width: 200,
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          primary: Colors.green,
-                          textStyle: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold)),
-                      onPressed: () {
-                        // collectionReference
-                        //     .doc(SelectedNursery)
-                        //     .collection(SelectedCategory)
-                        //     .add({
-                        //   "ProductName": _productName.text,
-                        //   "ProductImage": _productImage.text,
-                        //   "productprice": int.parse(_productPrice.text),
-                        //   "discription": _ProductDetail.text,
-                        // });
-                        // SAP(BuildContext, context);
-                      },
-                      child: Text("Upload Product"))),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  collectionReference
+                      .doc(SelectedShop)
+                      .collection(SelectedCategory)
+                      .add({
+                    "Product Name": _productName.text,
+                    "Cost": int.parse(_productPrice.text),
+                    "discription": _ProductDetail.text,
+                  });
+                  SAP(BuildContext, context);
+                  //  Navigator.pushNamed(context, '/O_Nursery_List');
+                },
                 child: Container(
-                  alignment: Alignment.bottomRight,
-                  child: TextButton.icon(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/O_Nursery_List');
-                    },
-                    icon: Icon(
-                      Icons.skip_next_sharp,
-                      color: Colors.black,
-                    ),
-                    label: Text(
-                      'Next',
-                      style: TextStyle(fontSize: 17, color: Colors.black),
-                    ),
+                  height: 60,
+                  width: 200,
+                  alignment: Alignment.center,
+                  child: Text(
+                    "Add Product",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18),
                   ),
+                  decoration: BoxDecoration(
+                      color: Colors.green,
+                      borderRadius: BorderRadius.circular(40)),
                 ),
               ),
             ],
@@ -235,8 +224,6 @@ class _Add_ProductState extends State<Add_Product> {
     );
   }
 }
-
-class _ProductName {}
 
 void SAP(BuildContext, Context) {
   var alertDialog = Container(

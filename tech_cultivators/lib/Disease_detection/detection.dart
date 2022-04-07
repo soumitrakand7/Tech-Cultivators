@@ -13,19 +13,22 @@ class _DetectionState extends State<Detection> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Colors.green,
-          title: Container(
-            padding: EdgeInsets.only(right: 1, left: 24),
-            child: Text("Disease Detection",
-                style: TextStyle(
-                  fontSize: 23,
-                  fontWeight: FontWeight.w500,
-                )),
+        backgroundColor: Colors.green,
+        title: Container(
+          padding: EdgeInsets.only(right: 1, left: 24),
+          child: Text("Disease Detection",
+              style: TextStyle(
+                fontSize: 23,
+                fontWeight: FontWeight.w500,
+              )),
+        ),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(30),
+            bottomRight: Radius.circular(30),
           ),
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(30),
-                  bottomRight: Radius.circular(30)))),
+        ),
+      ),
       body: SafeArea(
           child: Padding(
         padding: const EdgeInsets.all(5.0),
@@ -36,7 +39,7 @@ class _DetectionState extends State<Detection> {
               Container(
                 margin:
                     EdgeInsets.only(right: 10, left: 10, top: 10, bottom: 10),
-                height: 300,
+                height: 200,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     border: Border.all(color: Colors.green, width: 3),

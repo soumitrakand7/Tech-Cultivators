@@ -5,9 +5,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:lottie/lottie.dart';
 
 class Shop_Registration extends StatelessWidget {
-  // FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
-  // final CollectionReference collectionReference =
-  //     FirebaseFirestore.instance.collection("Sanket");
+  FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+  final CollectionReference collectionReference =
+      FirebaseFirestore.instance.collection("Shpos");
   @override
   final TextEditingController _textEditingController1 = TextEditingController();
   final TextEditingController _textEditingController2 = TextEditingController();
@@ -99,14 +99,14 @@ class Shop_Registration extends StatelessWidget {
                         SizedBox(
                           height: 10,
                         ),
-                        register("Shop Name", "Enter Your Nursery Name", false,
+                        register("Shop Name", "Enter Your Shop Name", false,
                             Icon(Icons.people), _textEditingController2),
                         SizedBox(
                           height: 10,
                         ),
                         register(
                             "Location",
-                            "Enter Address Of Nursery",
+                            "Enter Address Of Shop",
                             false,
                             Icon(Icons.location_city_outlined),
                             _textEditingController3),
@@ -134,7 +134,7 @@ class Shop_Registration extends StatelessWidget {
 
                         register(
                             "About",
-                            "Enter Detailed Information About Nursery",
+                            "Enter Detailed Information About Shop",
                             false,
                             Icon(Icons.info_outline),
                             _textEditingController5),
@@ -144,18 +144,18 @@ class Shop_Registration extends StatelessWidget {
 
                         InkWell(
                           onTap: () {
-                            // collectionReference
-                            //     .doc(_textEditingController2.text)
-                            //     .set({
-                            //   "NurseryOwner": _textEditingController1.text,
-                            //   "NurseryName ": _textEditingController2.text,
-                            //   "Location ": _textEditingController3.text,
-                            //   "Contact No":
-                            //       int.parse(_textEditingController4.text),
-                            //   "About Nursery": _textEditingController5.text,
-                            //   "Images": _textEditingController6.text
-                            // });
-                            // SC(BuildContext, context);
+                            collectionReference
+                                .doc(_textEditingController2.text)
+                                .set({
+                              "NurseryOwner": _textEditingController1.text,
+                              "NurseryName ": _textEditingController2.text,
+                              "Location ": _textEditingController3.text,
+                              "Contact No":
+                                  int.parse(_textEditingController4.text),
+                              "About Nursery": _textEditingController5.text,
+                              "Password": _textEditingController6.text
+                            });
+                            SC(BuildContext, context);
                           },
                           child: Container(
                             height: 50,
