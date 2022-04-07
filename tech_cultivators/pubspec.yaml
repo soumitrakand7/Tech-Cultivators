@@ -40,6 +40,10 @@ dependencies:
   cloud_firestore: ^3.1.11
   animate_do: ^2.1.0
   lottie: ^1.2.2
+  url_launcher: ^6.0.20
+  flutter_staggered_animations: ^1.0.0
+  html: ^0.15.0
+  http: ^0.13.4
   syncfusion_flutter_pdfviewer: ^20.1.47-beta
 
 dev_dependencies:
