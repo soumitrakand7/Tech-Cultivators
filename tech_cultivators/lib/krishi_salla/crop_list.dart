@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:kisan/krishi_salla/crop_detail.dart';
 import 'package:kisan/krishi_yojana/pdf_view.dart';
 
 class CropList extends StatefulWidget {
@@ -15,9 +16,12 @@ class _CropListState extends State<CropList> {
   Widget build(BuildContext context) {
      final size = MediaQuery.of(context).size;
      List img = [
-       "assets/images/investing.png",
-       "assets/images/Krushi_Salla.jpg","assets/images/investing.png",
-       "assets/images/Krushi_Salla.jpg","assets/images/investing.png",
+       "assets/images/wheat.png",
+       "assets/images/rice.png",
+       "assets/images/corn.png",
+       "assets/images/onion.png",
+       "assets/images/bajara.png",
+       "assets/images/jower.png",
      ];
     return Scaffold(
       appBar: AppBar(
@@ -46,47 +50,62 @@ class _CropListState extends State<CropList> {
                   crossAxisCount: 3,
                   // Generate 100 widgets that display their index in the List.
                   children: List.generate((snapshot.data! as QuerySnapshot).docs.length, (index) {
-                    return Card(
-                        elevation: 3,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        child: column(
-                          img[index],
-                            (snapshot.data! as QuerySnapshot).docs[index]['name'],
-                            context),
-                        // child: Container(
-                        //     decoration: BoxDecoration(
-                        //       borderRadius: BorderRadius.circular(8),
-                        //       border: Border.all(
-                        //         color: Colors.white,
-                        //       ),
-                        //       color: Colors.white,
-                        //     ),
-                        //     padding: EdgeInsets.all(10),
-                        //     height: size.height / 6.8,
-                        //     width: double.infinity,
-                        //     child: (snapshot.hasData) ?
-                        //     InkWell(
-                        //       onTap: (){
-                        //         try {
-                        //           Navigator.push(
-                        //               context,
-                        //               MaterialPageRoute(
-                        //                   builder: (context) =>
-                        //                       PdfView(
-                        //                           (snapshot.data! as QuerySnapshot).docs[index]['url']
-                        //                       )
-                        //               ));
-                        //         } catch (e) {
-                        //           print(e);
-                        //         }
-                        //       },
-                        //       child: Text(
-                        //           (snapshot.data! as QuerySnapshot).docs[index]['name']
-                        //       ),
-                        //     ) : null
-                        // )
+                    return InkWell(
+                      onTap: (){
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context)=> CropDetail(
+                                    (snapshot.data! as QuerySnapshot).docs[index]['name'],
+                                    (snapshot.data! as QuerySnapshot).docs[index]['yt'],
+                                    (snapshot.data! as QuerySnapshot).docs[index].id,
+                                  img[index]
+                                )
+                            )
+                        );
+                      },
+                      child: Card(
+                          elevation: 3,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          child: column(
+                            img[index],
+                              (snapshot.data! as QuerySnapshot).docs[index]['name'],
+                              context),
+                          // child: Container(
+                          //     decoration: BoxDecoration(
+                          //       borderRadius: BorderRadius.circular(8),
+                          //       border: Border.all(
+                          //         color: Colors.white,
+                          //       ),
+                          //       color: Colors.white,
+                          //     ),
+                          //     padding: EdgeInsets.all(10),
+                          //     height: size.height / 6.8,
+                          //     width: double.infinity,
+                          //     child: (snapshot.hasData) ?
+                          //     InkWell(
+                          //       onTap: (){
+                          //         try {
+                          //           Navigator.push(
+                          //               context,
+                          //               MaterialPageRoute(
+                          //                   builder: (context) =>
+                          //                       PdfView(
+                          //                           (snapshot.data! as QuerySnapshot).docs[index]['url']
+                          //                       )
+                          //               ));
+                          //         } catch (e) {
+                          //           print(e);
+                          //         }
+                          //       },
+                          //       child: Text(
+                          //           (snapshot.data! as QuerySnapshot).docs[index]['name']
+                          //       ),
+                          //     ) : null
+                          // )
+                      ),
                     );
                   }),
                 ),
