@@ -1,32 +1,22 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
+import 'package:kisan/Buy/Products_Shop.dart';
 import 'package:kisan/Buy/products_detail.dart';
 import '../Theme/Style.dart';
 
 class productpage extends StatelessWidget {
   String Title;
-  productpage({Key? key, required this.Title}) : super(key: key);
+  String Shop;
+  productpage({Key? key, required this.Title, required this.Shop})
+      : super(key: key);
   FirebaseFirestore db = FirebaseFirestore.instance;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.green,
-        elevation: 30,
-        title: Center(child: Text(Title)),
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(30),
-                bottomRight: Radius.circular(30))),
-      ),
       body: StreamBuilder(
-        stream: db
-            .collection("Shpos")
-            .doc("Blossom Valley")
-            .collection(Title)
-            .snapshots(),
+        stream: db.collection("Shpos").doc(Shop).collection(Title).snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return Center(child: CircularProgressIndicator());
@@ -46,8 +36,8 @@ class productpage extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => ProductDetailPage(
-                                    productName: Value[index]["Product Name"],
                                     Cost: Value[index]["Cost"],
+                                    productName: Value[index]["Product Name"],
                                   ),
                                 ),
                               );

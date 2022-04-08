@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kisan/Buy/Products.dart';
+import 'package:kisan/Buy/Products_Shop.dart';
 
 class Buy_home extends StatefulWidget {
   const Buy_home({Key? key}) : super(key: key);
@@ -99,7 +100,7 @@ class _Buy_homeState extends State<Buy_home> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          productpage(Title: "Seeds")),
+                                          Shops(Category: "Seeds")),
                                 );
                               },
                               child: column(
@@ -109,8 +110,8 @@ class _Buy_homeState extends State<Buy_home> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => productpage(
-                                          Title: "Fertilizers",
+                                    builder: (context) => Shops(
+                                          Category: "Fertilizers",
                                         )),
                               );
                             },
@@ -122,8 +123,8 @@ class _Buy_homeState extends State<Buy_home> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => productpage(
-                                            Title: "Tools",
+                                      builder: (context) => Shops(
+                                            Category: "Tools",
                                           )),
                                 );
                               },
@@ -138,14 +139,14 @@ class _Buy_homeState extends State<Buy_home> {
                         scrollDirection: Axis.horizontal,
                         child: Row(
                           children: [
-                            // column("assets/images/seed.png", "Seeds", context),
+                          
                             InkWell(
                               onTap: () {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => productpage(
-                                            Title: "Crop Protection",
+                                      builder: (context) => Shops(
+                                            Category: "Crop Protection",
                                           )),
                                 );
                               },

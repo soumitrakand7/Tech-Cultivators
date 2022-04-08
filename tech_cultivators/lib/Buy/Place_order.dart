@@ -119,7 +119,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                     );
                   }
 
-                  return Center(child: Text("Thoda Ruk be"));
+                  return Center(child: Text(""));
                 },
               ),
             )),
