@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "74020701314-lv69kt38a8lg5cf169rquku31mkgcsou.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kisan",
+            "certificate_hash": "9114ba16f344ea16676cee0cde36b8b8e914dbbe"
+          }
+        },
+        {
           "client_id": "74020701314-gfjq25e3ssdup6msaj57at4nfj4erc3l.apps.googleusercontent.com",
           "client_type": 3
         }

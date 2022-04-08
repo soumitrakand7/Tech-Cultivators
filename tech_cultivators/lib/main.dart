@@ -7,6 +7,8 @@ import 'package:kisan/Login/intermediatePage.dart';
 import 'package:kisan/Sell/Add_Products.dart';
 import 'package:kisan/Sell/Shop_registration.dart';
 
+import 'Home/home.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();

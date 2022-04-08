@@ -96,43 +96,47 @@ class _HomeState extends State<Home> {
                 ],
               ),
               const SizedBox(
-                height: 90,
+                height: 160,
               ),
-              MaterialButton(
-                minWidth: double.infinity,
-                height: 60,
-                onPressed: () {
-                  Navigator.pushNamed(context, "/Buy_home");
-                },
-                shape: RoundedRectangleBorder(
-                  side: const BorderSide(color: Colors.black),
-                  borderRadius: BorderRadius.circular(50),
-                ),
-                child: const Text(
-                  "Buy",
-                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
-                ),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              MaterialButton(
-                minWidth: double.infinity,
-                height: 60,
-                onPressed: () {
-                  Navigator.pushNamed(context, "/Shop_Registartion");
-                },
-                color: Colors.green,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(50),
-                ),
-                child: const Text(
-                  "Sell",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 18),
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  MaterialButton(
+                    height: 50,
+                    minWidth: 175,
+                    onPressed: () {
+                      Navigator.pushNamed(context, "/Buy_home");
+                    },
+                    shape: RoundedRectangleBorder(
+                        side: const BorderSide(color: Colors.green),
+                        borderRadius: BorderRadius.circular(50)),
+                    child: const Text(
+                      "Buy",
+                      style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18,
+                          color: Colors.green),
+                    ),
+                  ),
+                  MaterialButton(
+                    height: 50,
+                    minWidth: 175,
+                    onPressed: () {
+                      Navigator.pushNamed(context, "/Shop_Registartion");
+                    },
+                    color: Colors.green,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                    child: const Text(
+                      "Sell",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

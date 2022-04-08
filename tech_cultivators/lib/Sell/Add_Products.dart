@@ -14,12 +14,14 @@ class Add_Product extends StatefulWidget {
 
 class _Add_ProductState extends State<Add_Product> {
   FirebaseFirestore db = FirebaseFirestore.instance;
+  var firestoreDB = FirebaseFirestore.instance.collection("Shpos").snapshots();
   final CollectionReference collectionReference =
       FirebaseFirestore.instance.collection("Shpos");
   List<String> Nursary = [
     'Blossom Valley',
     'Evergreen',
     'Paradise Nursery',
+    "VJTI Cafe"
   ];
 
   List<String> Category = [
@@ -45,6 +47,7 @@ class _Add_ProductState extends State<Add_Product> {
     TextEditingController _Password = TextEditingController();
 
     final _key = GlobalKey<FormState>();
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green,
@@ -63,164 +66,172 @@ class _Add_ProductState extends State<Add_Product> {
           ),
         ),
       ),
-      body: ListView(
-        children: [
-          SizedBox(
-            height: 20,
-          ),
-          Form(
-              child: Column(
-            children: [
-              Container(
-                height: 70,
-                width: double.infinity,
-                padding: EdgeInsets.only(left: 20, right: 20),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
+      body: StreamBuilder<Object>(
+          stream: firestoreDB,
+          builder: (context, snapshot) {
+            return ListView(
+              children: [
+                SizedBox(
+                  height: 20,
                 ),
-                child: DropdownButton(
-                  hint:
-                      Text("Select your Shop", style: TextStyle(fontSize: 18)),
-                  value: SelectedShop,
-                  dropdownColor: Color.fromARGB(255, 197, 243, 206),
-                  elevation: 20,
-                  isExpanded: true,
-                  style: TextStyle(fontSize: 17, color: Colors.black),
-                  icon: Icon(
-                    Icons.arrow_drop_down_circle_sharp,
-                    size: 30,
-                  ),
-                  onChanged: (newValueSelected) {
-                    setState(() {
-                      SelectedShop = newValueSelected;
-                    });
-                  },
-                  items: Nursary.map((Nursary) {
-                    return DropdownMenuItem(
-                      value: Nursary,
-                      child: Text(
-                        Nursary,
-                        style: TextStyle(color: Colors.black),
+                Form(
+                    child: Column(
+                  children: [
+                    Container(
+                      height: 70,
+                      width: double.infinity,
+                      padding: EdgeInsets.only(left: 20, right: 20),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
                       ),
-                    );
-                  }).toList(),
-                ),
-              ),
-              // ),
-              SizedBox(
-                height: 20,
-              ),
-              Container(
-                height: 70,
-                width: double.infinity,
-                padding: EdgeInsets.only(left: 20, right: 20),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                ),
-                child: DropdownButton(
-                  hint: Text("Select Product Category ",
-                      style: TextStyle(fontSize: 18)),
-                  value: SelectedCategory,
-                  dropdownColor: Color.fromARGB(255, 197, 243, 206),
-                  elevation: 20,
-                  isExpanded: true,
-                  style: TextStyle(fontSize: 17, color: Colors.black),
-                  icon: Icon(
-                    Icons.arrow_drop_down_circle_sharp,
-                    size: 30,
-                  ),
-                  onChanged: (newValueSelected) {
-                    setState(() {
-                      SelectedCategory = newValueSelected;
-                    });
-                  },
-                  items: Category.map((Category) {
-                    return DropdownMenuItem(
-                      value: Category,
-                      child: Text(
-                        Category,
-                        style: TextStyle(color: Colors.black),
+                      child: DropdownButton(
+                        hint: Text("Select your Shop",
+                            style: TextStyle(fontSize: 18)),
+                        value: SelectedShop,
+                        dropdownColor: Color.fromARGB(255, 197, 243, 206),
+                        elevation: 20,
+                        isExpanded: true,
+                        style: TextStyle(fontSize: 17, color: Colors.black),
+                        icon: Icon(
+                          Icons.arrow_drop_down_circle_sharp,
+                          size: 30,
+                        ),
+                        onChanged: (newValueSelected) {
+                          setState(() {
+                            SelectedShop = newValueSelected;
+                          });
+                        },
+                        items: Nursary.map((Nursary) {
+                          return DropdownMenuItem(
+                            value: Nursary,
+                            child: Text(
+                              Nursary,
+                              style: TextStyle(color: Colors.black),
+                            ),
+                          );
+                        }).toList(),
                       ),
-                    );
-                  }).toList(),
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
+                    ),
+                    // ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      height: 70,
+                      width: double.infinity,
+                      padding: EdgeInsets.only(left: 20, right: 20),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                      ),
+                      child: DropdownButton(
+                        hint: Text("Select Product Category ",
+                            style: TextStyle(fontSize: 18)),
+                        value: SelectedCategory,
+                        dropdownColor: Colors.green,
+                        elevation: 20,
+                        isExpanded: true,
+                        style: TextStyle(fontSize: 17, color: Colors.black),
+                        icon: Icon(
+                          Icons.arrow_drop_down_circle_sharp,
+                          size: 30,
+                        ),
+                        onChanged: (newValueSelected) {
+                          setState(() {
+                            SelectedCategory = newValueSelected;
+                          });
+                        },
+                        items: Category.map((Category) {
+                          return DropdownMenuItem(
+                            value: Category,
+                            child: Text(
+                              Category,
+                              style: TextStyle(color: Colors.black),
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
 
-              data("Password", "Enter password of selected shop", false,
-                  _Password),
-              SizedBox(
-                height: 20,
-              ),
+                    data("Password", "Enter password of selected shop", false,
+                        _Password),
+                    SizedBox(
+                      height: 20,
+                    ),
 
-              Column(
-                children: [
-                  data(
-                      " ProductName", "Enter ProductName", false, _productName),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  data(" ProductPrice", "Enter Product Price", false,
-                      _productPrice),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  data(" ProductDetail", "Enter deatail description of product",
-                      false, _ProductDetail),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  data(
-                    "Image",
-                    "Upload image of product",
-                    false,
-                    _productImage,
-                  ),
-                ],
-              ),
+                    Column(
+                      children: [
+                        data(" ProductName", "Enter ProductName", false,
+                            _productName),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        data(" ProductPrice", "Enter Product Price", false,
+                            _productPrice),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        data(
+                            " ProductDetail",
+                            "Enter deatail description of product",
+                            false,
+                            _ProductDetail),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        data(
+                          "Image",
+                          "Upload image of product",
+                          false,
+                          _productImage,
+                        ),
+                      ],
+                    ),
 
-              SizedBox(
-                height: 20,
-              ),
+                    SizedBox(
+                      height: 20,
+                    ),
 
-              SizedBox(
-                height: 20,
-              ),
-              InkWell(
-                onTap: () {
-                  collectionReference
-                      .doc(SelectedShop)
-                      .collection(SelectedCategory)
-                      .add({
-                    "Product Name": _productName.text,
-                    "Cost": int.parse(_productPrice.text),
-                    "discription": _ProductDetail.text,
-                  });
-                  SAP(BuildContext, context);
-                  //  Navigator.pushNamed(context, '/O_Nursery_List');
-                },
-                child: Container(
-                  height: 60,
-                  width: 200,
-                  alignment: Alignment.center,
-                  child: Text(
-                    "Add Product",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18),
-                  ),
-                  decoration: BoxDecoration(
-                      color: Colors.green,
-                      borderRadius: BorderRadius.circular(40)),
-                ),
-              ),
-            ],
-          )),
-        ],
-      ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    InkWell(
+                      onTap: () {
+                        collectionReference
+                            .doc(SelectedShop)
+                            .collection(SelectedCategory)
+                            .add({
+                          "Product Name": _productName.text,
+                          "Cost": int.parse(_productPrice.text),
+                          "discription": _ProductDetail.text,
+                        });
+
+                        SAP(BuildContext, context);
+                        //  Navigator.pushNamed(context, '/O_Nursery_List');
+                      },
+                      child: Container(
+                        height: 60,
+                        width: 200,
+                        alignment: Alignment.center,
+                        child: Text(
+                          "Add Product",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18),
+                        ),
+                        decoration: BoxDecoration(
+                            color: Colors.green,
+                            borderRadius: BorderRadius.circular(40)),
+                      ),
+                    ),
+                  ],
+                )),
+              ],
+            );
+          }),
     );
   }
 }
