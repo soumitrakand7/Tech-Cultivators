@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MainDrawer extends StatelessWidget {
   @override
@@ -185,11 +186,11 @@ class MainDrawer extends StatelessWidget {
                 Navigator.pushNamed(context, "/Login_page_User");
               },
               child: ListTile(
-                leading: Icon(
+                leading: const Icon(
                   Icons.login,
                 ),
                 tileColor: Colors.blue[200],
-                title: Text(
+                title: const Text(
                   "Log In",
                   style: TextStyle(
                     fontSize: 17,
@@ -200,12 +201,15 @@ class MainDrawer extends StatelessWidget {
             InkWell(
               onTap: () async {
                 await FirebaseAuth.instance.signOut();
+                final SharedPreferences sharedPreferences =
+                    await SharedPreferences.getInstance();
+                sharedPreferences.remove('phone');
                 Navigator.pushNamed(context, "/");
               },
               child: ListTile(
-                leading: Icon(Icons.logout),
+                leading: const Icon(Icons.logout),
                 tileColor: Colors.blue[200],
-                title: Text(
+                title: const Text(
                   "Log Out",
                   style: TextStyle(
                     fontSize: 17,
@@ -225,7 +229,7 @@ class MainDrawer extends StatelessWidget {
 void signout(BuildContext, Context) {
   var alertDialog = Container(
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)),
-      child: AlertDialog(
+      child: const AlertDialog(
           title: Text(
         'Sign Out Completed',
         style: TextStyle(

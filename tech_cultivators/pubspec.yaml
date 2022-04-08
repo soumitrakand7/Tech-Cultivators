@@ -39,6 +39,7 @@ dependencies:
   firebase_auth: ^3.3.12
   cloud_firestore: ^3.1.11
   animate_do: ^2.1.0
+  shared_preferences: ^2.0.13
   lottie: ^1.2.2
   url_launcher: ^6.0.20
   flutter_staggered_animations: ^1.0.0
@@ -46,6 +47,10 @@ dependencies:
   http: ^0.13.4
   avatar_glow: ^2.0.2
   syncfusion_flutter_pdfviewer: ^20.1.47-beta
+  youtube_player_flutter: ^8.0.0
+  device_apps: ^2.2.0
+  firebase_storage: ^10.2.11
+  flutter_phone_direct_caller: ^2.1.0
 
 dev_dependencies:
   flutter_test:

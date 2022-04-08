@@ -1,6 +1,7 @@
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'VerificationPage.dart';
 
@@ -124,6 +125,9 @@ class _LoginPhoneState extends State<LoginPhone> {
               ),
               GestureDetector(
                 onTap: () async {
+                  final SharedPreferences sharedPreferences =
+                      await SharedPreferences.getInstance();
+                  sharedPreferences.setString('phone', _controller.text);
                   setState(() {
                     press = !press;
                   });

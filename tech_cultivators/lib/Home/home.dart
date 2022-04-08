@@ -1,14 +1,21 @@
-import 'package:flutter/material.dart';
+  import 'package:flutter/material.dart';
 import 'package:kisan/Disease_detection/detection.dart';
 import 'package:kisan/Home/Drawer.dart';
 import 'package:kisan/Home/Slider_Home.dart';
+import 'package:kisan/labours/options.dart';
+
+import '../krishi_salla/crop_list.dart';
 import '../Weather/WeatherInfo.dart';
 import '../krishi_yojana/yojana_list.dart';
 
-class Home extends StatelessWidget {
-  const Home({
-    Key? key,
-  }) : super(key: key);
+class Home extends StatefulWidget {
+  const Home({Key? key}) : super(key: key);
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,6 +23,22 @@ class Home extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.green,
         elevation: 30,
+        actions: [
+          IconButton(
+              icon: Icon(
+                Icons.play_circle_outline,
+                color: Colors.white,
+              ),
+              onPressed: (){
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context)=> Options()
+                        )
+                    );
+              }
+          )
+        ],
         title: const Center(
           child: Text("Tech Cultivators"),
         ),
@@ -43,6 +66,27 @@ class Home extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
+                  column("assets/images/weather.png", "हवामान", context),
+                  column("assets/images/news-paper.png", " कृषी वार्ता", context),
+                  InkWell(
+                    onTap: (){
+                       Navigator.push(
+                                       context,
+                                      MaterialPageRoute(
+                                       builder: (context) =>
+                                        CropList()    
+                                        )
+                                            );
+                    
+                    },
+                    child: column("assets/images/Krushi_Salla.jpg", "क्रुशी सल्ला", context))
+                ],
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  column("assets/images/investing.png", "बाजारभाव", context),
                   InkWell(
                     onTap: () {
                       Navigator.push(
