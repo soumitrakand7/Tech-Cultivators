@@ -269,14 +269,21 @@ class _LaboursState extends State<Labours> {
               context: context,
               builder: (ctx) => AlertDialog(
                 backgroundColor: Color.fromARGB(255, 248, 243, 247),
-                title: Text("Add Doctor Detail"),
+                title: Center(
+                  child: Text("मजूराचे माहिती भरा",
+                    style: TextStyle(
+                        color: Colors.green,
+                        fontWeight: FontWeight.w500
+                    ),
+                  ),
+                ),
                 content: SingleChildScrollView(
                   child: Column(
                     children: [
                       SizedBox(height: 10),
                       TextField(
                           controller: _doctorName,
-                          cursorColor: const Color(0xff8f94fb),
+                          cursorColor: Colors.green,
                           // focusNode: myFocusNode,
                           autofocus: false,
                           keyboardType: TextInputType.text,
@@ -284,80 +291,59 @@ class _LaboursState extends State<Labours> {
                           decoration: InputDecoration(
                             prefixIcon: Icon(
                               Icons.person,
-                              color: Color(0xff8f94fb),
+                              color: Colors.green,
                             ),
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xff8f94fb)),
+                              borderSide: BorderSide(color: Colors.green),
                               borderRadius: BorderRadius.circular(7.0),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xff8f94fb)),
+                              borderSide: BorderSide(color: Colors.green),
                             ),
                             contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-                            hintText: "Enter Doctor Name",
+                            hintText: "नाव",
                           )),
                       SizedBox(height: 20),
                       TextField(
                           controller: _doctorPost,
-                          cursorColor: Color(0xff8f94fb),
+                          cursorColor: Colors.green,
                           autofocus: false,
                           keyboardType: TextInputType.text,
                           textInputAction: TextInputAction.next,
                           decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.watch_outlined,
-                                color: Color(0xff8f94fb)),
+                            prefixIcon: Icon(Icons.accessibility,
+                                color: Colors.green),
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xff8f94fb)),
+                              borderSide: BorderSide(color: Colors.green),
                               borderRadius: BorderRadius.circular(7.0),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xff8f94fb)),
+                              borderSide: BorderSide(color: Colors.green),
                             ),
                             contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-                            hintText: "Enter Post",
+                            hintText: "लिंग",
                           )),
                       SizedBox(height: 20),
                       TextField(
                           controller: _doctorSpeciality,
-                          cursorColor: Color(0xff8f94fb),
+                          cursorColor: Colors.green,
                           autofocus: false,
                           keyboardType: TextInputType.text,
                           textInputAction: TextInputAction.next,
                           decoration: InputDecoration(
                             prefixIcon: Icon(Icons.all_inclusive_sharp,
-                                color: Color(0xff8f94fb)),
+                                color: Colors.green),
                             enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xff8f94fb)),
+                              borderSide: BorderSide(color: Colors.green),
                               borderRadius: BorderRadius.circular(7.0),
                             ),
                             focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xff8f94fb)),
+                              borderSide: BorderSide(color: Colors.green),
                             ),
                             contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-                            hintText: "Speciality",
+                            hintText: "वय",
                           )),
-                      SizedBox(height: 20),
-                      TextField(
-                          controller: _doctorEducation,
-                          cursorColor: Color(0xff8f94fb),
-                          autofocus: false,
-                          keyboardType: TextInputType.text,
-                          textInputAction: TextInputAction.done,
-                          decoration: InputDecoration(
-                            prefixIcon:
-                            Icon(Icons.school, color: Color(0xff8f94fb)),
-                            enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Color(0xff8f94fb),
-                              ),
-                              borderRadius: BorderRadius.circular(7.0),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              borderSide: BorderSide(color: Color(0xff8f94fb)),
-                            ),
-                            contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-                            hintText: "Enter Education",
-                          )),
+
                     ],
                   ),
                 ),
@@ -382,7 +368,11 @@ class _LaboursState extends State<Labours> {
 
                       Navigator.of(ctx).pop();
                     },
-                    child: Text("Done"),
+                    child: Text("पूर्ण",
+                      style: TextStyle(
+                          color: Colors.green,
+                          fontWeight: FontWeight.w600
+                      ),),
                   ),
                   SizedBox(width: size.width / 5),
                   FlatButton(
@@ -393,7 +383,12 @@ class _LaboursState extends State<Labours> {
                       _doctorEducation.clear();
                       Navigator.of(ctx).pop();
                     },
-                    child: Text("Cancel"),
+                    child: Text("रद्द करा",
+                      style: TextStyle(
+                        color: Colors.green,
+                        fontWeight: FontWeight.w600
+                      ),
+                    ),
                   ),
                 ],
               ),
