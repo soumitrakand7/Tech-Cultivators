@@ -45,34 +45,35 @@ class _WeatherPageState extends State<WeatherPage> {
                 setState(() {
                   _search();
                 });
-                Navigator.push<void>(
-                  context,
-                  MaterialPageRoute<void>(
-                    builder: (BuildContext context) => Details(
-                      humidity: humidity,
-                      icon: icon,
-                      myCity: myCity,
-                      pressure: pressure,
-                      speed: speed,
-                      tempCelsius: tempCelsius,
-                      tempKelvin: tempKelvin,
-                      visibility: visibility,
-                      weather1: weather1,
-                    ),
-                  ),
-                );
+                myCity != null
+                    ? Navigator.push<void>(
+                        context,
+                        MaterialPageRoute<void>(
+                          builder: (BuildContext context) => Details(
+                            humidity: humidity,
+                            icon: icon,
+                            myCity: myCity,
+                            pressure: pressure,
+                            speed: speed,
+                            tempCelsius: tempCelsius,
+                            tempKelvin: tempKelvin,
+                            visibility: visibility,
+                            weather1: weather1,
+                          ),
+                        ),
+                      )
+                    : const CircularProgressIndicator();
               },
               child: const Text('Search'),
             ),
-            Text("Temp: " + tempCelsius.toString())
           ],
         ),
       ),
     );
   }
 
-  Future<Weather> _search() async {
-    final weather = Weather();
+  Future<WeatherDetails> _search() async {
+    final weather = WeatherDetails();
     await weather.getWeather(_cityTextController.text);
     setState(() {
       myCity = weather.myCity;
@@ -90,7 +91,7 @@ class _WeatherPageState extends State<WeatherPage> {
   }
 }
 
-class Weather {
+class WeatherDetails {
   String? myCity;
   double? tempKelvin;
   double? tempCelsius;

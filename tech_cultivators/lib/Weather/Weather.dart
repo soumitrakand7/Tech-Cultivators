@@ -10,14 +10,14 @@ class Weather extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.green,
         title: Container(
-          padding: EdgeInsets.only(right: 1, left: 24),
-          child: Text("Weather",
+          padding: const EdgeInsets.only(right: 1, left: 24),
+          child: const Text("Weather",
               style: TextStyle(
                 fontSize: 23,
                 fontWeight: FontWeight.w500,
               )),
         ),
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(30),
             bottomRight: Radius.circular(30),
@@ -25,7 +25,6 @@ class Weather extends StatelessWidget {
         ),
       ),
       body: SafeArea(
-          child: Container(
         child: Stack(
           children: [
             Positioned(
@@ -42,7 +41,7 @@ class Weather extends StatelessWidget {
               top: 20,
               left: 10,
               child: Column(
-                children: [
+                children: const [
                   Text(
                     "Location:",
                     style: TextStyle(fontSize: 17),
@@ -66,7 +65,7 @@ class Weather extends StatelessWidget {
             )
           ],
         ),
-      )),
+      ),
     );
   }
 }

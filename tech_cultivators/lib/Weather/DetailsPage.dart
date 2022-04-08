@@ -1,5 +1,3 @@
-// ignore_for_file: must_be_immutable
-
 import 'package:flutter/material.dart';
 
 class Details extends StatefulWidget {
@@ -54,8 +52,27 @@ class _DetailsState extends State<Details> {
             Text(
               "Windspeed: " + widget.speed.toString(),
             ),
-            Image.asset("tech_cultivators/assets/icons/${widget.icon}@2x.jpg")
-            // tech_cultivators\assets\icons\01d@2x.png
+            Container(
+              margin: const EdgeInsets.only(
+                right: 8,
+                left: 8,
+                top: 8,
+                bottom: 8,
+              ),
+              width: 110,
+              height: 115,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border.all(color: Colors.white, width: 3),
+                borderRadius: BorderRadius.circular(30),
+                image: DecorationImage(
+                  image: AssetImage(
+                    "assets/icons/${widget.icon}@2x.png",
+                  ),
+                  fit: BoxFit.contain,
+                ),
+              ),
+            ),
           ],
         ),
       ),

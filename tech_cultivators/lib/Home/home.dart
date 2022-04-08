@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kisan/Disease_detection/detection.dart';
 import 'package:kisan/Home/Drawer.dart';
 import 'package:kisan/Home/Slider_Home.dart';
-import 'package:kisan/Weather/Weather.dart';
+import '../Weather/WeatherInfo.dart';
 import '../krishi_yojana/yojana_list.dart';
 
 class Home extends StatelessWidget {
@@ -44,18 +44,20 @@ class Home extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const Weather()));
-                      },
-                      child: column(
-                          "assets/images/weather.png", "हवामान", context)),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const WeatherPage()),
+                      );
+                    },
+                    child:
+                        column("assets/images/weather.png", "हवामान", context),
+                  ),
                   column(
                       "assets/images/news-paper.png", " कृषी वार्ता", context),
-                  column(
-                      "assets/images/Krushi_Salla.jpg", "क्रुशी सल्ला", context)
+                  column("assets/images/Krushi_Salla.jpg", "क्रुशी सल्ला",
+                      context),
                 ],
               ),
               Row(
@@ -64,23 +66,29 @@ class Home extends StatelessWidget {
                 children: [
                   column("assets/images/investing.png", "बाजारभाव", context),
                   InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const YojanaList()));
-                      },
-                      child: column("assets/images/handshake.png",
-                          " कृषी योजना", context)),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const YojanaList(),
+                        ),
+                      );
+                    },
+                    child: column(
+                        "assets/images/handshake.png", " कृषी योजना", context),
+                  ),
                   InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const Detection()));
-                      },
-                      child: column(
-                          "assets/images/virus.png", "वनस्पती रोग", context))
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const Detection(),
+                        ),
+                      );
+                    },
+                    child: column(
+                        "assets/images/virus.png", "वनस्पती रोग", context),
+                  ),
                 ],
               ),
               const SizedBox(
@@ -93,8 +101,9 @@ class Home extends StatelessWidget {
                   Navigator.pushNamed(context, "/Buy_home");
                 },
                 shape: RoundedRectangleBorder(
-                    side: const BorderSide(color: Colors.black),
-                    borderRadius: BorderRadius.circular(50)),
+                  side: const BorderSide(color: Colors.black),
+                  borderRadius: BorderRadius.circular(50),
+                ),
                 child: const Text(
                   "Buy",
                   style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
@@ -111,7 +120,8 @@ class Home extends StatelessWidget {
                 },
                 color: Colors.green,
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50)),
+                  borderRadius: BorderRadius.circular(50),
+                ),
                 child: const Text(
                   "Sell",
                   style: TextStyle(
@@ -136,11 +146,11 @@ Widget column(String image, String text, BuildContext context) {
         width: MediaQuery.of(context).size.width / 4,
         height: 80,
         decoration: BoxDecoration(
-            color: Colors.white,
-            // border: Border.all(color: Colors.green, width: 3),
-            // borderRadius: BorderRadius.circular(30),
-            image:
-                DecorationImage(image: AssetImage(image), fit: BoxFit.contain)),
+          color: Colors.white,
+          // border: Border.all(color: Colors.green, width: 3),
+          // borderRadius: BorderRadius.circular(30),
+          image: DecorationImage(image: AssetImage(image), fit: BoxFit.contain),
+        ),
       ),
       Text(
         text,
