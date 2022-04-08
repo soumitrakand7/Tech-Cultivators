@@ -1,10 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:kisan/Buy/Buy_home.dart';
+import 'package:kisan/Home/home.dart';
 import 'package:kisan/Login/LoginPage.dart';
+import 'package:kisan/Login/intermediatePage.dart';
 import 'package:kisan/Sell/Add_Products.dart';
 import 'package:kisan/Sell/Shop_registration.dart';
-import 'package:kisan/Weather/WeatherInfo.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => const WeatherPage(),
+        '/': (context) => const IntermediatePage(),
         "/Shop_Registartion": (context) => Shop_Registration(),
         "/Buy_home": (context) => const Buy_home(),
         "/Add_Product": (context) => const Add_Product()
