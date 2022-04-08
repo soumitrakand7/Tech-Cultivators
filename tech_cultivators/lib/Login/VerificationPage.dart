@@ -150,12 +150,13 @@ class _VerificationPageState extends State<VerificationPage> {
                   height: size.height / 13,
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
-                        colors: press
-                            ? [Colors.blue, Colors.red]
-                            : [
-                                const Color(0xff00548e),
-                                const Color(0xff009297)
-                              ]),
+                      colors: press
+                          ? [Colors.blue, Colors.red]
+                          : [
+                              const Color(0xff00548e),
+                              const Color(0xff009297),
+                            ],
+                    ),
                     borderRadius: BorderRadius.circular(20),
                     // boxShadow: kButtonShadows,
                   ),
@@ -226,7 +227,7 @@ class _VerificationPageState extends State<VerificationPage> {
       codeAutoRetrievalTimeout: (String verificationID) {
         setState(() {
           _verificationCode = verificationID;
-          print("FJHFBHFBHFBHFB");
+          print("QPIWGMMGWKMG");
         });
       },
       timeout: const Duration(
