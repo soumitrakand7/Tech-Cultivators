@@ -85,7 +85,7 @@ class _FarmerDetailState extends State<FarmerDetail> {
                     radius: 50),
                 const SizedBox(height: 10),
                 Text(
-                  'AIP3R5D6G',
+                  'गट नेता: राहुल चहर',
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
@@ -99,8 +99,17 @@ class _FarmerDetailState extends State<FarmerDetail> {
                     color: Color.fromARGB(255, 155, 155, 155),
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
-                  ),
-                )
+                  ),),
+                      Text(
+                        "₹ " +
+                            "40000"+" प्रति दिवस",
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 155, 155, 155),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          )
+                      ),
+
               ],
             ),
           ),
@@ -215,14 +224,35 @@ class _FarmerDetailState extends State<FarmerDetail> {
                         child: ListView.builder(
                         itemCount: 20,
                         itemBuilder: (BuildContext context, int index) {
-                          return Text(
-                              '${index+1}. राहुल चहर',
-                              style: TextStyle(
-                                  color: Color.fromARGB(255, 155, 155, 155),
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
-                                  height: 1.4),
-                            );
+                          return Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                  '${index+1}. नावः सुनील शेट्टी',
+                                  style: TextStyle(
+                                      color: Color.fromARGB(255, 155, 155, 155),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16,
+                                      height: 1.4),
+                                ),Text(
+                                "    लिंग: पुरूष",
+                                  style: TextStyle(
+                                      color: Color.fromARGB(255, 155, 155, 155),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16,
+                                      height: 1.4),
+                                ),Text(
+                                "    वय: 30",
+                                  style: TextStyle(
+                                      color: Color.fromARGB(255, 155, 155, 155),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16,
+                                      height: 1.4),
+                                ),
+                              Divider()
+                            ],
+                          );
                         }),
                       )
                     ],
@@ -246,7 +276,7 @@ class _FarmerDetailState extends State<FarmerDetail> {
                 color: Colors.white,
               ),
               onPressed: () async {
-                await FlutterPhoneDirectCaller.callNumber("8356994981");
+                await FlutterPhoneDirectCaller.callNumber("1234567890");
               },
             ),
           ),

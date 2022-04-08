@@ -129,7 +129,7 @@ class _FarmersState extends State<Farmers> {
                                       children: <Widget>[
                                         Text(
                                           "₹ " +
-                                              "40000",
+                                              "40000"+" प्रति दिवस",
                                           //   style: CustomTextStyle
                                           //       .textFormFieldBlack
                                           //       .copyWith(
