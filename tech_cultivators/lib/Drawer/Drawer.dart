@@ -10,8 +10,8 @@ class MainDrawer extends StatelessWidget {
     CollectionReference users = FirebaseFirestore.instance.collection('User');
     FirebaseAuth _auth = FirebaseAuth.instance;
 
-    // final uid = _auth.currentUser!.uid;
-    // print(uid);
+    final uid = _auth.currentUser!.uid;
+
     return Scaffold(
       body: Drawer(
           child: Container(
@@ -24,7 +24,7 @@ class MainDrawer extends StatelessWidget {
                 child: Center(
                   child: Column(children: <Widget>[
                     FutureBuilder<DocumentSnapshot>(
-                      // future: users.doc(uid).get(),
+                      future: users.doc(uid).get(),
                       builder: (BuildContext context,
                           AsyncSnapshot<DocumentSnapshot> snapshot) {
                         if (snapshot.hasError) {
@@ -36,8 +36,8 @@ class MainDrawer extends StatelessWidget {
                         }
 
                         if (snapshot.connectionState == ConnectionState.done) {
-                          // Map<String, dynamic> data =
-                          //     snapshot.data!.data() as Map<String, dynamic>;
+                          Map<String, dynamic> data =
+                              snapshot.data!.data() as Map<String, dynamic>;
 
                           return ClipRect(
                             child: Container(
@@ -46,10 +46,10 @@ class MainDrawer extends StatelessWidget {
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: Colors.orange,
-                                // image: DecorationImage(
-                                //   image: NetworkImage("${data['Image']}"),
-                                //   fit: BoxFit.cover,
-                                // ),
+                                image: DecorationImage(
+                                  image: NetworkImage("${data['Image']}"),
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
                           );
@@ -59,35 +59,36 @@ class MainDrawer extends StatelessWidget {
                       },
                     ),
                     Padding(padding: EdgeInsets.only(top: 10, bottom: 10)),
-                    // FutureBuilder<DocumentSnapshot>(
-                    //   future: users.doc(uid).get(),
-                    //   builder: (BuildContext context,
-                    //       AsyncSnapshot<DocumentSnapshot> snapshot) {
-                    //     if (snapshot.hasError) {
-                    //       return Text("Something went wrong");
-                    //     }
+                    FutureBuilder<DocumentSnapshot>(
+                      future: users.doc(uid).get(),
+                      builder: (BuildContext context,
+                          AsyncSnapshot<DocumentSnapshot> snapshot) {
+                        if (snapshot.hasError) {
+                          return Text("Something went wrong");
+                        }
 
-                    //     if (snapshot.hasData && !snapshot.data!.exists) {
-                    //       return Text("Document does not exist");
-                    //     }
+                        if (snapshot.hasData && !snapshot.data!.exists) {
+                          return Text("Document does not exist");
+                        }
 
-                    //     if (snapshot.connectionState == ConnectionState.done) {
-                    //       Map<String, dynamic> data =
-                    //           snapshot.data!.data() as Map<String, dynamic>;
+                        if (snapshot.connectionState == ConnectionState.done) {
+                          Map<String, dynamic> data =
+                              snapshot.data!.data() as Map<String, dynamic>;
 
-                    //       return Text("User Name: ${data['Name']}");
-                    //     }
+                          return Text("User Name: ${data['Name']}");
+                        }
 
-                    //     return Text("loading");
-                    //   },
-                    // ),
+                        return Text("loading");
+                      },
+                    ),
                     Padding(padding: EdgeInsets.only(top: 10, bottom: 10)),
                     Title(
                       color: Colors.blue,
-                      child: Text(""
-                          // "Email : ${_auth.currentUser!.email}",
-                          // style: TextStyle(),
-                          ),
+                      child: Text(
+                        ""
+                        "Email : ${_auth.currentUser!.email}",
+                        style: TextStyle(),
+                      ),
                     )
                   ]),
                 )),

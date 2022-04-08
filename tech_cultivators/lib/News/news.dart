@@ -69,10 +69,21 @@ class _NewsPageState extends State<NewsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "News Page",
-        ),
         backgroundColor: Colors.green,
+        title: Container(
+          padding: const EdgeInsets.only(right: 1, left: 24),
+          child: const Text("News",
+              style: TextStyle(
+                fontSize: 23,
+                fontWeight: FontWeight.w500,
+              )),
+        ),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(30),
+            bottomRight: Radius.circular(30),
+          ),
+        ),
       ),
       body: titleList.isEmpty
           ? const Center(

@@ -373,7 +373,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                             backgroundColor: Colors.green,
                             textColor: Colors.white,
                             fontSize: 16.0);
-                        Navigator.pushNamed(context, "/Place_Order");
+                        Navigator.pushNamed(context, "/Confirm_Order");
                       },
                       child: Container(
                         decoration: BoxDecoration(
