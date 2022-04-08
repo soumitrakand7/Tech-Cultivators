@@ -91,8 +91,11 @@ class Home extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 160,
+              Align(
+                  alignment: Alignment.topLeft,
+                  child: column("assets/images/workers.png", "मजूर", context)),
+              SizedBox(
+                height: 40,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
