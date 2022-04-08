@@ -37,8 +37,10 @@ class Details extends StatefulWidget {
 class _DetailsState extends State<Details> {
   @override
   Widget build(BuildContext context) {
-   List time = DateTime.fromMillisecondsSinceEpoch(
-        int.parse(widget.sunrise.toString())).toString().split(" ") ;
+    List time = DateTime.fromMillisecondsSinceEpoch(
+            int.parse(widget.sunrise.toString()))
+        .toString()
+        .split(" ");
     return Scaffold(
       appBar: AppBar(),
       body: Center(

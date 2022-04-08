@@ -12,6 +12,7 @@ class WeatherPage extends StatefulWidget {
 }
 
 class _WeatherPageState extends State<WeatherPage> {
+  bool isLoading = false;
   String? myCity;
   double? tempKelvin;
   double? tempCelsius;
@@ -28,48 +29,51 @@ class _WeatherPageState extends State<WeatherPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 50),
-              child: SizedBox(
-                width: 150,
-                child: TextField(
-                    controller: _cityTextController,
-                    decoration: const InputDecoration(labelText: 'City'),
-                    textAlign: TextAlign.center),
+        child: isLoading
+            ? const CircularProgressIndicator()
+            : Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 50),
+                    child: SizedBox(
+                      width: 150,
+                      child: TextField(
+                          controller: _cityTextController,
+                          decoration: const InputDecoration(labelText: 'City'),
+                          textAlign: TextAlign.center),
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        isLoading = true;
+                        _search();
+                      });
+                      myCity != null
+                          ? Navigator.push<void>(
+                              context,
+                              MaterialPageRoute<void>(
+                                builder: (BuildContext context) => Details(
+                                  humidity: humidity,
+                                  icon: icon,
+                                  myCity: myCity,
+                                  pressure: pressure,
+                                  speed: speed,
+                                  sunrise: sunrise,
+                                  tempCelsius: tempCelsius,
+                                  tempKelvin: tempKelvin,
+                                  visibility: visibility,
+                                  weather1: weather1,
+                                ),
+                              ),
+                            )
+                          : CircularProgressIndicator();
+                    },
+                    child: const Text('Search'),
+                  ),
+                ],
               ),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                setState(() {
-                  _search();
-                });
-                myCity != null
-                    ? Navigator.push<void>(
-                        context,
-                        MaterialPageRoute<void>(
-                          builder: (BuildContext context) => Details(
-                            humidity: humidity,
-                            icon: icon,
-                            myCity: myCity,
-                            pressure: pressure,
-                            speed: speed,
-                            sunrise: sunrise,
-                            tempCelsius: tempCelsius,
-                            tempKelvin: tempKelvin,
-                            visibility: visibility,
-                            weather1: weather1,
-                          ),
-                        ),
-                      )
-                    : const CircularProgressIndicator();
-              },
-              child: const Text('Search'),
-            ),
-          ],
-        ),
       ),
     );
   }
@@ -89,7 +93,7 @@ class _WeatherPageState extends State<WeatherPage> {
       visibility = weather.visibility;
       pressure = weather.pressure;
     });
-
+    isLoading = false;
     return weather;
   }
 }
@@ -127,7 +131,7 @@ class WeatherDetails {
     visibility = json['visibility'];
     pressure = json['main']['pressure'];
     sunrise = json['sys']['sunrise'];
-    print(response.body);
+
     return await response;
   }
 }
