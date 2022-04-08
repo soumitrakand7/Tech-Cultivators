@@ -20,16 +20,11 @@ class _CropDetailState extends State<CropDetail> {
     final size = MediaQuery.of(context).size;
     var firestoreDB = FirebaseFirestore.instance
         .collection("crop_suggetions")
-<<<<<<< HEAD
         .doc(widget!.id!)
-=======
-        .doc(widget.id!)
->>>>>>> 003f5850dea20c1ff58a51fe6e20d1bdb8faac08
         .collection("procedure")
         .orderBy("order")
         .snapshots();
     return Scaffold(
-<<<<<<< HEAD
         backgroundColor: Colors.white,
         appBar: AppBar(
           backgroundColor: Colors.green,
@@ -55,55 +50,19 @@ class _CropDetailState extends State<CropDetail> {
         body: ListView(children: <Widget>[
           Padding(
             padding: EdgeInsets.fromLTRB(8, 16, 8, 0),
-=======
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.green,
-        elevation: 30,
-        title: const Center(
-          child: Text("कृषी सल्ला"),
-        ),
-        actions: [
-          IconButton(
-              icon: const Icon(
-                Icons.play_circle_outline,
-                color: Colors.white,
-              ),
-              onPressed: _launchURL)
-        ],
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(20),
-            bottomRight: Radius.circular(20),
-          ),
-        ),
-      ),
-      body: ListView(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.fromLTRB(8, 16, 8, 0),
->>>>>>> 003f5850dea20c1ff58a51fe6e20d1bdb8faac08
             child: Center(
                 child: Column(
               children: [
                 Container(
-<<<<<<< HEAD
                   margin:
                       EdgeInsets.only(right: 10, left: 10, top: 10, bottom: 10),
                   width: MediaQuery.of(context).size.width / 4,
                   height: 100,
-=======
-                  margin: const EdgeInsets.only(
-                      right: 10, left: 10, top: 10, bottom: 10),
-                  width: MediaQuery.of(context).size.width / 4,
-                  height: 60,
->>>>>>> 003f5850dea20c1ff58a51fe6e20d1bdb8faac08
                   decoration: BoxDecoration(
                       color: Colors.transparent,
                       // border: Border.all(color: Colors.green, width: 3),
                       // borderRadius: BorderRadius.circular(30),
                       image: DecorationImage(
-<<<<<<< HEAD
                           image: AssetImage(widget!.img!), fit: BoxFit.fill)),
                 ),
                 Text(
@@ -112,27 +71,12 @@ class _CropDetailState extends State<CropDetail> {
                       color: Colors.green,
                       fontWeight: FontWeight.w600,
                       fontSize: 20),
-=======
-                          image: AssetImage(widget!.img!),
-                          fit: BoxFit.contain)),
-                ),
-                Text(
-                  widget.name!,
-                  style: const TextStyle(
-                      color: Colors.green,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 17),
->>>>>>> 003f5850dea20c1ff58a51fe6e20d1bdb8faac08
                 ),
               ],
             )),
           ),
           Padding(
-<<<<<<< HEAD
             padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
-=======
-            padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
->>>>>>> 003f5850dea20c1ff58a51fe6e20d1bdb8faac08
             child: SizedBox(
               height: 500,
               // width: 155,
@@ -144,7 +88,6 @@ class _CropDetailState extends State<CropDetail> {
                         itemCount: (snapshot.data as QuerySnapshot).docs.length,
                         itemBuilder: (BuildContext context, int index) {
                           return Card(
-<<<<<<< HEAD
                               elevation: 2,
                               child: Container(
                                 height: 300,
@@ -245,129 +188,15 @@ class _CropDetailState extends State<CropDetail> {
                                   ],
                                 ),
                               ));
-=======
-                            elevation: 2,
-                            child: SizedBox(
-                              height: 300,
-                              width: 330,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const SizedBox(
-                                    height: 13,
-                                  ),
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Center(
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: const [
-                                            Center(
-                                              child: Text(
-                                                "-------- ",
-                                                style: TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                            ),
-                                            Center(
-                                              child: Text(
-                                                "वर्तमान कार्य",
-                                                style: TextStyle(
-                                                    color: Colors.green,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                            ),
-                                            Center(
-                                              child: Text(
-                                                " --------",
-                                                style: TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 4,
-                                      ),
-                                      Center(
-                                        child: Text(
-                                          (snapshot.data as QuerySnapshot)
-                                              .docs[index]['name'],
-                                          style: const TextStyle(
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 4,
-                                      ),
-                                      const Center(
-                                        child: Text(
-                                          "0-0",
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 4,
-                                      ),
-                                      const Center(
-                                        child: Text(
-                                          "(पासून: 06-04-2022 पर्यंत 06-04-2022)",
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 20,
-                                      ),
-                                      SizedBox(
-                                        height: 308,
-                                        child: ListView(
-                                          children: [
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.fromLTRB(
-                                                      20, 0, 20, 0),
-                                              child: Text(
-                                                (snapshot!.data
-                                                        as QuerySnapshot)
-                                                    .docs[index]['details'],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
->>>>>>> 003f5850dea20c1ff58a51fe6e20d1bdb8faac08
                         });
                   }),
             ),
           ),
-<<<<<<< HEAD
         ]));
   }
 
   void _launchURL() async {
     if (!await launch("https://www.youtube.com/watch?v=" + widget!.yt!))
       throw 'Could not launch';
-=======
-        ],
-      ),
-    );
-  }
-
-  void _launchURL() async {
-    if (!await launch("https://www.youtube.com/watch?v=" + widget.yt!)) {
-      throw 'Could not launch';
-    }
->>>>>>> 003f5850dea20c1ff58a51fe6e20d1bdb8faac08
   }
 }
