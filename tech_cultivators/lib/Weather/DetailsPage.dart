@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 
 class Details extends StatefulWidget {
@@ -10,6 +12,7 @@ class Details extends StatefulWidget {
   int? humidity;
   int? visibility;
   int? pressure;
+  int? sunrise;
 
   Details({
     Key? key,
@@ -22,6 +25,7 @@ class Details extends StatefulWidget {
     required this.humidity,
     required this.visibility,
     required this.pressure,
+    required this.sunrise,
   }) : super(key: key);
 
   static String id = "Details";
@@ -33,6 +37,8 @@ class Details extends StatefulWidget {
 class _DetailsState extends State<Details> {
   @override
   Widget build(BuildContext context) {
+   List time = DateTime.fromMillisecondsSinceEpoch(
+        int.parse(widget.sunrise.toString())).toString().split(" ") ;
     return Scaffold(
       appBar: AppBar(),
       body: Center(
@@ -51,6 +57,9 @@ class _DetailsState extends State<Details> {
             ),
             Text(
               "Windspeed: " + widget.speed.toString(),
+            ),
+            Text(
+              "Sunrise: " + time[1].toString(),
             ),
             Container(
               margin: const EdgeInsets.only(

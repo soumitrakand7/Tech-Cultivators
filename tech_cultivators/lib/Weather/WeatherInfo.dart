@@ -19,6 +19,7 @@ class _WeatherPageState extends State<WeatherPage> {
   String? icon;
   double? speed;
   int? humidity;
+  int? sunrise;
   int? visibility;
   int? pressure;
   final _cityTextController = TextEditingController();
@@ -55,6 +56,7 @@ class _WeatherPageState extends State<WeatherPage> {
                             myCity: myCity,
                             pressure: pressure,
                             speed: speed,
+                            sunrise: sunrise,
                             tempCelsius: tempCelsius,
                             tempKelvin: tempKelvin,
                             visibility: visibility,
@@ -78,9 +80,10 @@ class _WeatherPageState extends State<WeatherPage> {
     setState(() {
       myCity = weather.myCity;
       tempKelvin = weather.tempKelvin;
-      tempCelsius = weather.tempKelvin;
+      tempCelsius = weather.tempCelsius;
       weather1 = weather.weather1;
       icon = weather.icon;
+      sunrise = weather.sunrise;
       speed = weather.speed;
       humidity = weather.humidity;
       visibility = weather.visibility;
@@ -98,6 +101,7 @@ class WeatherDetails {
   String? weather1;
   String? icon;
   double? speed;
+  int? sunrise;
   int? humidity;
   int? visibility;
   int? pressure;
@@ -114,7 +118,7 @@ class WeatherDetails {
     response = await http.get(uri);
     final json = jsonDecode(response.body);
     myCity = json['name'];
-    tempKelvin = json['main']['temp'];
+    tempKelvin = double.parse(json['main']['temp'].toString());
     tempCelsius = tempKelvin! - 273.12;
     weather1 = json['weather'][0]['main'];
     icon = json['weather'][0]['icon'];
@@ -122,7 +126,8 @@ class WeatherDetails {
     humidity = json['main']['humidity'];
     visibility = json['visibility'];
     pressure = json['main']['pressure'];
-
+    sunrise = json['sys']['sunrise'];
+    print(response.body);
     return await response;
   }
 }
