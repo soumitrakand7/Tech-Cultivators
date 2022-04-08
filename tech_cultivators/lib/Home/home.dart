@@ -1,4 +1,4 @@
-  import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:kisan/Disease_detection/detection.dart';
 import 'package:kisan/Home/Drawer.dart';
 import 'package:kisan/Home/Slider_Home.dart';
@@ -29,15 +29,10 @@ class _HomeState extends State<Home> {
                 Icons.play_circle_outline,
                 color: Colors.white,
               ),
-              onPressed: (){
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context)=> Options()
-                        )
-                    );
-              }
-          )
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Options()));
+              })
         ],
         title: const Center(
           child: Text("Tech Cultivators"),
@@ -67,41 +62,17 @@ class _HomeState extends State<Home> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   column("assets/images/weather.png", "हवामान", context),
-                  column("assets/images/news-paper.png", " कृषी वार्ता", context),
-                  InkWell(
-                    onTap: (){
-                       Navigator.push(
-                                       context,
-                                      MaterialPageRoute(
-                                       builder: (context) =>
-                                        CropList()    
-                                        )
-                                            );
-                    
-                    },
-                    child: column("assets/images/Krushi_Salla.jpg", "क्रुशी सल्ला", context))
-                ],
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  column("assets/images/investing.png", "बाजारभाव", context),
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const WeatherPage()),
-                      );
-                    },
-                    child:
-                        column("assets/images/weather.png", "हवामान", context),
-                  ),
                   column(
                       "assets/images/news-paper.png", " कृषी वार्ता", context),
-                  column("assets/images/Krushi_Salla.jpg", "क्रुशी सल्ला",
-                      context),
+                  InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => CropList()));
+                      },
+                      child: column("assets/images/Krushi_Salla.jpg",
+                          "क्रुशी सल्ला", context))
                 ],
               ),
               Row(
@@ -135,8 +106,21 @@ class _HomeState extends State<Home> {
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 160,
+              Align(
+                  alignment: Alignment.topLeft,
+                  child: InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Options(),
+                          ),
+                        );
+                      },
+                      child: column(
+                          "assets/images/workers.png", "मजूर", context))),
+              SizedBox(
+                height: 40,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
