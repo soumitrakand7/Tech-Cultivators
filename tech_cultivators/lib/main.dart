@@ -4,6 +4,7 @@ import 'package:kisan/Buy/Buy_home.dart';
 import 'package:kisan/Home/home.dart';
 import 'package:kisan/Login/LoginPage.dart';
 import 'package:kisan/Login/intermediatePage.dart';
+import 'package:kisan/News/news.dart';
 import 'package:kisan/Sell/Add_Products.dart';
 import 'package:kisan/Sell/Shop_registration.dart';
 

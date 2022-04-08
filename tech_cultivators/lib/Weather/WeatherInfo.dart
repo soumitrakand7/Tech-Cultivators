@@ -55,13 +55,14 @@ class _WeatherPageState extends State<WeatherPage> {
                               context,
                               MaterialPageRoute<void>(
                                 builder: (BuildContext context) => Details(
+                                  Location:_cityTextController.toString() ,
                                   humidity: humidity,
                                   icon: icon,
                                   myCity: myCity,
                                   pressure: pressure,
                                   speed: speed,
                                   sunrise: sunrise,
-                                  tempCelsius: tempCelsius,
+                                   tempCelsius: tempCelsius,
                                   tempKelvin: tempKelvin,
                                   visibility: visibility,
                                   weather1: weather1,
