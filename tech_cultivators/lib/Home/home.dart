@@ -61,7 +61,15 @@ class _HomeState extends State<Home> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  column("assets/images/weather.png", "हवामान", context),
+                  InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => WeatherPage()));
+                      },
+                      child: column(
+                          "assets/images/weather.png", "हवामान", context)),
                   column(
                       "assets/images/news-paper.png", " कृषी वार्ता", context),
                   InkWell(
