@@ -44,11 +44,13 @@ dependencies:
   url_launcher: ^6.0.20
   flutter_staggered_animations: ^1.0.0
   html: ^0.15.0
+  image_picker: ^0.8.5  
   http: ^0.13.4
   avatar_glow: ^2.0.2
   syncfusion_flutter_pdfviewer: ^20.1.47-beta
   youtube_player_flutter: ^8.0.0
   device_apps: ^2.2.0
+  image_cropper: ^1.5.1
   firebase_storage: ^10.2.11
   flutter_phone_direct_caller: ^2.1.0
 

@@ -70,9 +70,10 @@ class _CropDetailState extends State<CropDetail> {
                 Text(
                   widget.name!,
                   style: const TextStyle(
-                      color: Colors.green,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 17),
+                    color: Colors.green,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 17,
+                  ),
                 ),
               ],
             )),
