@@ -77,12 +77,13 @@ class _DetectionState extends State<Detection> {
                     height: 200,
                     width: 200,
                     child: Lottie.network(
-                        "https://assets2.lottiefiles.com/packages/lf20_m1hurwli.json"),
+                        "https://assets2.lottiefiles.com/packages/lf20_m1hurwli.json"
+                    ),
                   ),
                 ),
                 ElevatedButton(
                   onPressed: () async {
-                    Navigator.pop(context);
+                    // Navigator.pop(context);
                     var imagefile = await ImagePicker()
                         .pickImage(source: ImageSource.camera);
                     if (imagefile != null) {
@@ -91,12 +92,12 @@ class _DetectionState extends State<Detection> {
                           _image = imagefile;
                         });
                       }
-                      await _cropImage(imagefile.path);
-                      await FirebaseStorage.instance
-                          .ref("Images/$uploadCode")
-                          .putFile(
-                            File(imagefile.path),
-                          );
+                      _cropImage(imagefile.path);
+                      // await FirebaseStorage.instance
+                      //     .ref("Images/$uploadCode")
+                      //     .putFile(
+                      //       File(imagefile.path),
+                      //     );
                     }
                   },
                   child: const Text("Submit"),

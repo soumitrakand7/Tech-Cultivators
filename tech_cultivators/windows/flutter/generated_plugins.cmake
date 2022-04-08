@@ -5,12 +5,9 @@
 list(APPEND FLUTTER_PLUGIN_LIST
   syncfusion_pdfviewer_windows
   url_launcher_windows
-<<<<<<< HEAD
 )
 
 list(APPEND FLUTTER_FFI_PLUGIN_LIST
-=======
->>>>>>> 003f5850dea20c1ff58a51fe6e20d1bdb8faac08
 )
 
 set(PLUGIN_BUNDLED_LIBRARIES)
