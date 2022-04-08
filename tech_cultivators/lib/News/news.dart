@@ -16,6 +16,7 @@ class _NewsPageState extends State<NewsPage> {
   List<String> titleList = [];
   List<String> postList = [];
   List<String> linkList = [];
+  List<String> imageList = [];
   @override
   void initState() {
     super.initState();
@@ -39,14 +40,28 @@ class _NewsPageState extends State<NewsPage> {
         .cast<String>()
         .toList();
 
+    final images = document.getElementsByClassName('news-img');
+    imageList = images
+        .map((e) => e.getElementsByTagName("img")[0].attributes['data-src'])
+        .cast<String>()
+        .toList();
+
     setState(() {
       titleList;
       postList;
       linkList;
+      imageList;
+
       for (int i = 0; i < news.length; i++) {
         linkList[i] = 'https://marathi.krishijagran.com' + linkList[i];
         postList[i] = postList[i].trim();
       }
+
+      for (var elem in imageList) {
+        print(elem);
+      }
+      print(imageList.length);
+      print(titleList.length);
     });
   }
 
@@ -57,59 +72,101 @@ class _NewsPageState extends State<NewsPage> {
         title: const Text(
           "News Page",
         ),
+        backgroundColor: Colors.green,
       ),
-      body: ListView.builder(
-        itemBuilder: ((context, index) => AnimationConfiguration.staggeredList(
-              position: index,
-              duration: const Duration(milliseconds: 375),
-              child: SlideAnimation(
-                child: FadeInAnimation(
-                  child: GestureDetector(
-                    onTap: () async {
-                      dynamic url = linkList[index];
-                      if (await canLaunch(url)) {
-                        launch(url);
-                      } else {
-                        print('error');
-                      }
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Card(
-                        child: Container(
-                          color: Colors.black87,
-                          child: Column(
-                            children: <Widget>[
-                              Align(
-                                alignment: Alignment.centerLeft,
-                                child: Text(
-                                  titleList[index],
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.red,
-                                    fontSize: 20,
+      body: titleList.isEmpty
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : ListView.builder(
+              itemBuilder: ((context, index) =>
+                  AnimationConfiguration.staggeredList(
+                    position: index,
+                    duration: const Duration(milliseconds: 375),
+                    child: SlideAnimation(
+                      child: FadeInAnimation(
+                        child: GestureDetector(
+                          onTap: () async {
+                            dynamic url = linkList[index];
+                            if (await canLaunch(url)) {
+                              launch(url);
+                            } else {
+                              print('error');
+                            }
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(10),
+                            child: Card(
+                              elevation: 3,
+                              color: const Color.fromARGB(255, 232, 252, 234),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Container(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.65,
+                                    child: Column(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.fromLTRB(
+                                              16, 14, 16, 0),
+                                          child: Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: Text(
+                                              titleList[index],
+                                              style: const TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.black,
+                                                fontSize: 15,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.fromLTRB(
+                                              16, 0, 16, 12),
+                                          child: Text(
+                                            postList[index],
+                                            style: const TextStyle(
+                                              color: Colors.blueGrey,
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        image: DecorationImage(
+                                          image: NetworkImage(
+                                            imageList[index],
+                                          ),
+                                          fit: BoxFit.fill,
+                                        )),
+                                    margin: EdgeInsets.only(top: 10),
+                                    width: MediaQuery.of(context).size.width *
+                                        0.25,
+                                    height: 110,
+                                  )
+                                ],
                               ),
-                              const SizedBox(
-                                height: 15,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20.0),
                               ),
-                              Text(
-                                postList[index],
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ],
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ),
-              ),
-            )),
-      ),
+                  )),
+              itemCount: titleList.length,
+            ),
     );
   }
 }
