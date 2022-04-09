@@ -9,11 +9,13 @@ class ProductDetailPage extends StatefulWidget {
   String productName;
   int Cost;
   String ShopName;
+  String ProductImage;
 
   ProductDetailPage(
       {Key? key,
       required this.ShopName,
       required this.productName,
+      required this.ProductImage,
       required this.Cost})
       : super(key: key);
   @override
@@ -53,8 +55,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                 child: Stack(
                   children: <Widget>[
                     FadeInDownBig(
-                        child: Image(
-                            image: AssetImage("assets/images/fertilizer.png"))),
+                        child: Image(image: NetworkImage(widget.ProductImage))),
                     SafeArea(
                       child: IconButton(
                           icon: Icon(
@@ -193,7 +194,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                             MaterialPageRoute(
                                 builder: (context) => PlaceOrder(
                                       ShopName: widget.ShopName,
-                                      img: "",
+                                      img: widget.ProductImage,
                                       price: widget.Cost,
                                       productName: widget.productName,
                                     )),

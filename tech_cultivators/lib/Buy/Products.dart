@@ -36,6 +36,7 @@ class productpage extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => ProductDetailPage(
+                                    ProductImage: Value[index]["ProductImage"],
                                     Cost: Value[index]["Cost"],
                                     productName: Value[index]["Product Name"],
                                     ShopName: Shop,
@@ -61,15 +62,14 @@ class productpage extends StatelessWidget {
                                     width: 110,
                                     height: 115,
                                     decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      border: Border.all(
-                                          color: Colors.white, width: 3),
-                                      borderRadius: BorderRadius.circular(30),
-                                      // image: DecorationImage(
-                                      //     image: NetworkImage(
-                                      //         Value[index]["ProductImage"]),
-                                      //     fit: BoxFit.fill)
-                                    ),
+                                        color: Colors.white,
+                                        border: Border.all(
+                                            color: Colors.white, width: 3),
+                                        borderRadius: BorderRadius.circular(30),
+                                        image: DecorationImage(
+                                            image: NetworkImage(
+                                                Value[index]["ProductImage"]),
+                                            fit: BoxFit.fill)),
                                   ),
                                   SizedBox(
                                     width: 10,

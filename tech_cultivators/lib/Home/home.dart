@@ -29,6 +29,7 @@ class _HomeState extends State<Home> {
           child: Text("Tech Cultivators"),
         ),
         shape: const RoundedRectangleBorder(
+          
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(20),
             bottomRight: Radius.circular(20),
