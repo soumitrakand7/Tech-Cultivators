@@ -42,6 +42,7 @@ dependencies:
   image_crop: ^0.4.0
   shared_preferences: ^2.0.13
   lottie: ^1.2.2
+  fluttertoast: ^8.0.9
   url_launcher: ^6.0.20
   flutter_staggered_animations: ^1.0.0
   html: ^0.15.0

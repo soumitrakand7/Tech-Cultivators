@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import "package:flutter/material.dart";
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:lottie/lottie.dart';
 
@@ -8,6 +9,8 @@ class PlaceOrder extends StatefulWidget {
   final String productName;
   final String img;
   final num price;
+  final String ShopName;
+
   // final String ShopName;
 
   PlaceOrder({
@@ -15,7 +18,7 @@ class PlaceOrder extends StatefulWidget {
     required this.productName,
     required this.img,
     required this.price,
-    // required this.ShopName,
+    required this.ShopName,
   }) : super(key: key);
 
   @override
@@ -26,7 +29,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
   // CollectionReference users = FirebaseFirestore.instance.collection('User');
   FirebaseAuth _auth = FirebaseAuth.instance;
   final CollectionReference collectionReference =
-      FirebaseFirestore.instance.collection("Shpos");
+      FirebaseFirestore.instance.collection("User");
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +76,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
               borderRadius: BorderRadius.circular(5),
               shadowColor: Colors.green,
               child: FutureBuilder<DocumentSnapshot>(
-                // future: users.doc(_auth.currentUser!.uid).get(),
+                future: collectionReference.doc(_auth.currentUser!.uid).get(),
                 builder: (BuildContext context,
                     AsyncSnapshot<DocumentSnapshot> snapshot) {
                   if (snapshot.hasError) {
@@ -129,7 +132,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                   borderRadius: BorderRadius.circular(10)),
               color: Colors.green[500],
               onPressed: () {
-                Navigator.pushNamed(context, "/Address");
+                Navigator.pushNamed(context, "/Adress");
               },
               child: Container(
                 height: 50,
@@ -193,7 +196,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                                         ),
                                   ),
                                   SizedBox(height: 6),
-                                  Text("Blossom Valley",
+                                  Text(widget.ShopName,
                                       style: TextStyle(
                                         fontSize: 15,
                                       )),
@@ -320,7 +323,7 @@ class _PlaceOrderState extends State<PlaceOrder> {
                 ),
               ),
             ),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.17),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.10),
             Container(
               child: Expanded(
                 child: Row(
@@ -349,29 +352,29 @@ class _PlaceOrderState extends State<PlaceOrder> {
                       ),
                     ),
                     InkWell(
-                      // onTap: () {
-                      //   final id = collectionReference
-                      //       .doc(_auth.currentUser!.uid)
-                      //       .collection("OrderList")
-                      //       .add({
-                      //     "ProductName": widget.name,
-                      //     "ProductPrice": AmountPayable,
-                      //     "Image": widget.img,
-                      //     "NurseryName": widget.NurseryName,
-                      //     "DeliveryDate": Delivery,
-                      //     "OrderDate": OrderDate
-                      //   });
+                      onTap: () {
+                        final id = collectionReference
+                            .doc(_auth.currentUser!.uid)
+                            .collection("OrderList")
+                            .add({
+                          "ProductName": widget.productName,
+                          "ProductPrice": AmountPayable,
+                          "Image": widget.img,
+                          "NurseryName": widget.ShopName,
+                          "DeliveryDate": Delivery,
+                          "OrderDate": OrderDate
+                        });
 
-                      //   Fluttertoast.showToast(
-                      //       msg: " Order successful ",
-                      //       toastLength: Toast.LENGTH_LONG,
-                      //       gravity: ToastGravity.BOTTOM,
-                      //       timeInSecForIosWeb: 1,
-                      //       backgroundColor: Colors.green,
-                      //       textColor: Colors.white,
-                      //       fontSize: 16.0);
-                      //   Navigator.pushNamed(context, "/Place_Order");
-                      // },
+                        Fluttertoast.showToast(
+                            msg: " Order successful ",
+                            toastLength: Toast.LENGTH_LONG,
+                            gravity: ToastGravity.BOTTOM,
+                            timeInSecForIosWeb: 1,
+                            backgroundColor: Colors.green,
+                            textColor: Colors.white,
+                            fontSize: 16.0);
+                        Navigator.pushNamed(context, "/Confirm_Order");
+                      },
                       child: Container(
                         decoration: BoxDecoration(
                             color: Colors.green,
