@@ -45,9 +45,9 @@ class _Add_ProductState extends State<Add_Product> {
     TextEditingController _ProductDetail = TextEditingController();
     TextEditingController _productCategory = TextEditingController();
     TextEditingController _Password = TextEditingController();
-
+    final FirebaseFirestore firestoreDB = FirebaseFirestore.instance;
     final _key = GlobalKey<FormState>();
-
+    // Password = FirebaseFirestore.collection("").get()
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green,
@@ -66,9 +66,11 @@ class _Add_ProductState extends State<Add_Product> {
           ),
         ),
       ),
-      body: StreamBuilder<Object>(
-          stream: firestoreDB,
-          builder: (context, snapshot) {
+      body: StreamBuilder<DocumentSnapshot>(
+          stream: firestoreDB.collection("Shpos").doc(SelectedShop).snapshots(),
+          builder: (BuildContext context, snapshot) {
+            Map<String, dynamic> map =
+                snapshot.data!.data() as Map<String, dynamic>;
             return ListView(
               children: [
                 SizedBox(
@@ -161,45 +163,46 @@ class _Add_ProductState extends State<Add_Product> {
                       height: 20,
                     ),
 
-                    Column(
-                      children: [
-                        data(" ProductName", "Enter ProductName", false,
-                            _productName),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        data(" ProductPrice", "Enter Product Price", false,
-                            _productPrice),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        data(
-                            " ProductDetail",
-                            "Enter deatail description of product",
-                            false,
-                            _ProductDetail),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        data(
-                          "Image",
-                          "Upload image of product",
-                          false,
-                          _productImage,
-                        ),
-                      ],
-                    ),
+                    map.containsValue(_Password.toString())
+                        ? Column(
+                            children: [
+                              data(" ProductName", "Enter ProductName", false,
+                                  _productName),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              data(" ProductPrice", "Enter Product Price",
+                                  false, _productPrice),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              data(
+                                  " ProductDetail",
+                                  "Enter deatail description of product",
+                                  false,
+                                  _ProductDetail),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              data(
+                                "Image",
+                                "Upload image of product",
+                                false,
+                                _productImage,
+                              ),
+                            ],
+                          )
+                        : Container(),
 
-                    SizedBox(
+             const       SizedBox(
                       height: 20,
                     ),
 
-                    SizedBox(
+                   const SizedBox(
                       height: 20,
                     ),
                     InkWell(
-                      onTap: () {  
-                    
+                      onTap: () {
                         collectionReference
                             .doc(SelectedShop)
                             .collection(SelectedCategory)
