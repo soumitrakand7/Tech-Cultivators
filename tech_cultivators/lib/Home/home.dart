@@ -25,17 +25,6 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         backgroundColor: Colors.green,
         elevation: 30,
-        actions: [
-          IconButton(
-              icon: Icon(
-                Icons.play_circle_outline,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Options()));
-              })
-        ],
         title: const Center(
           child: Text("Tech Cultivators"),
         ),

@@ -45,16 +45,16 @@ class MainDrawer extends StatelessWidget {
                               height: 200,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Colors.orange,
+                                color: Colors.white,
                                 image: DecorationImage(
-                                  image: NetworkImage("${data['Image']}"),
+                                  image: NetworkImage(
+                                      "https://i.pinimg.com/originals/8b/ae/a6/8baea65ab0db4a06580e4f814babeca5.png"),
                                   fit: BoxFit.cover,
                                 ),
                               ),
                             ),
                           );
                         }
-
                         return Center(child: Text("loading"));
                       },
                     ),
@@ -110,21 +110,21 @@ class MainDrawer extends StatelessWidget {
                 ),
               ),
             ),
-            InkWell(
-              onTap: () {
-                Navigator.pushNamed(context, "/Cart");
-              },
-              child: ListTile(
-                leading: Icon(Icons.add_shopping_cart),
-                tileColor: Colors.blue[200],
-                title: Text(
-                  "My Cart",
-                  style: TextStyle(
-                    fontSize: 17,
-                  ),
-                ),
-              ),
-            ),
+            // InkWell(
+            //   onTap: () {
+            //     Navigator.pushNamed(context, "/Cart");
+            //   },
+            //   child: ListTile(
+            //     leading: Icon(Icons.add_shopping_cart),
+            //     tileColor: Colors.blue[200],
+            //     title: Text(
+            //       "My Cart",
+            //       style: TextStyle(
+            //         fontSize: 17,
+            //       ),
+            //     ),
+            //   ),
+            // ),
             InkWell(
               onTap: () {
                 Navigator.pushNamed(context, "/Order");
@@ -139,7 +139,7 @@ class MainDrawer extends StatelessWidget {
                   ),
                 ),
               ),
-            ),  
+            ),
             InkWell(
               onTap: () {
                 Navigator.popAndPushNamed(context, "/ContactUs");

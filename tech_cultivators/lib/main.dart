@@ -15,6 +15,7 @@ import 'package:kisan/Login/intermediatePage.dart';
 import 'package:kisan/News/news.dart';
 import 'package:kisan/Sell/Add_Products.dart';
 import 'package:kisan/Sell/Shop_registration.dart';
+import 'package:kisan/Sell/next_add_product.dart';
 
 import 'Home/home.dart';
 
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
         "/Confirm_Order": (context) => Place_Order(),
         "/Password": (context) => ResetP(),
         "/MyAccount": (context) => MyAccount(),
+       
         "/Order": (context) => Order(),
         "/Home": (context) => Home(),
         "/register": (context) => registration_page(),

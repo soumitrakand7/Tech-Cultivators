@@ -85,7 +85,7 @@ class _BaazarBhavState extends State<BaazarBhav> {
       const DataColumn(
         label: Text(
           "Commodity",
-          style: TextStyle(fontSize: 13, fontWeight: FontWeight.w500),
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
         ),
       ),
       const DataColumn(
@@ -93,14 +93,14 @@ class _BaazarBhavState extends State<BaazarBhav> {
           width: 90,
           child: Text(
             "Arrival (Qts)",
-            style: TextStyle(fontSize: 13),
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
           ),
         ),
       ),
       const DataColumn(
         label: Text(
-          "Modal Price (Rs./Qtl)",
-          style: TextStyle(fontSize: 13),
+          "Modal Price\n (Rs./Qtl)",
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
         ),
       ),
     ];
@@ -146,7 +146,7 @@ class _BaazarBhavState extends State<BaazarBhav> {
       columnSpacing: 25,
       dataRowHeight: 40,
       dataTextStyle: const TextStyle(
-          fontSize: 10, color: Colors.black, fontWeight: FontWeight.w400),
+          fontSize: 11.75, color: Colors.black, fontWeight: FontWeight.w400),
     );
   }
 }

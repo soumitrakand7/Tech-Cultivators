@@ -29,9 +29,6 @@ class _FarmersState extends State<Farmers> {
                     itemBuilder: (BuildContext context, int index) {
                       Map<String, dynamic> map = snapshots.data!.docs[index]
                           .data() as Map<String, dynamic>;
-                      // if(map.containsKey('labourList'))
-                      //  labourList = map['labourList'];
-                      // // Nursary[i
                       return (map.containsKey('money'))
                           ? InkWell(
                               onTap: () {

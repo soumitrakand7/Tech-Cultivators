@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:kisan/Sell/next_add_product.dart';
 
 class Add_Product extends StatefulWidget {
   const Add_Product({Key? key}) : super(key: key);
@@ -32,17 +33,13 @@ class _Add_ProductState extends State<Add_Product> {
     "Plants"
   ];
   var SelectedCategory;
-  var SelectedShop;
+  var SelectedShop = "Evergreen";
   bool issale = false;
-  String Password = "";
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController _productName = TextEditingController();
-    TextEditingController _productImage = TextEditingController();
     TextEditingController _NurseryName = TextEditingController();
-    TextEditingController _productPrice = TextEditingController();
-    TextEditingController _ProductDetail = TextEditingController();
+
     TextEditingController _productCategory = TextEditingController();
     TextEditingController _Password = TextEditingController();
     final FirebaseFirestore firestoreDB = FirebaseFirestore.instance;
@@ -71,6 +68,7 @@ class _Add_ProductState extends State<Add_Product> {
           builder: (BuildContext context, snapshot) {
             Map<String, dynamic> map =
                 snapshot.data!.data() as Map<String, dynamic>;
+            print(map.length);
             return ListView(
               children: [
                 SizedBox(
@@ -100,7 +98,7 @@ class _Add_ProductState extends State<Add_Product> {
                         ),
                         onChanged: (newValueSelected) {
                           setState(() {
-                            SelectedShop = newValueSelected;
+                            SelectedShop = newValueSelected.toString();
                           });
                         },
                         items: Nursary.map((Nursary) {
@@ -162,66 +160,26 @@ class _Add_ProductState extends State<Add_Product> {
                     SizedBox(
                       height: 20,
                     ),
-
-                    map.containsValue(_Password.toString())
-                        ? Column(
-                            children: [
-                              data(" ProductName", "Enter ProductName", false,
-                                  _productName),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              data(" ProductPrice", "Enter Product Price",
-                                  false, _productPrice),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              data(
-                                  " ProductDetail",
-                                  "Enter deatail description of product",
-                                  false,
-                                  _ProductDetail),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              data(
-                                "Image",
-                                "Upload image of product",
-                                false,
-                                _productImage,
-                              ),
-                            ],
-                          )
-                        : Container(),
-                        
-
-             const       SizedBox(
-                      height: 20,
-                    ),
-
-                   const SizedBox(
-                      height: 20,
-                    ),
                     InkWell(
                       onTap: () {
-                        collectionReference
-                            .doc(SelectedShop)
-                            .collection(SelectedCategory)
-                            .add({
-                          "Product Name": _productName.text,
-                          "Cost": int.parse(_productPrice.text),
-                          "discription": _ProductDetail.text,
-                        });
-
-                        SAP(BuildContext, context);
-                        //  Navigator.pushNamed(context, '/O_Nursery_List');
+                        if (map['Password'] == _Password.text) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Upload(
+                                Category: SelectedCategory,
+                                shopName: SelectedShop,
+                              ),
+                            ),
+                          );
+                        }
                       },
                       child: Container(
                         height: 60,
                         width: 200,
                         alignment: Alignment.center,
                         child: Text(
-                          "Add Product",
+                          "Submit",
                           style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
@@ -231,7 +189,7 @@ class _Add_ProductState extends State<Add_Product> {
                             color: Colors.green,
                             borderRadius: BorderRadius.circular(40)),
                       ),
-                    ),
+                    )
                   ],
                 )),
               ],
