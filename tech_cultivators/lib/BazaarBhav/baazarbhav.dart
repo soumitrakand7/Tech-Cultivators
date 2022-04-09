@@ -56,28 +56,27 @@ class _BaazarBhavState extends State<BaazarBhav> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const Padding(
-            padding: EdgeInsets.all(16),
-            child: Text(
-              "Baazar Bhav",
-              style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-              ),
-            ),
+      appBar: AppBar(
+        backgroundColor: Colors.green,
+        elevation: 30,
+        title: const Center(
+          child: Text("बाजारभाव"),
+        ),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(15),
+            bottomRight: Radius.circular(15),
           ),
-          commodity.length <= 1
-              ? const Center(
-                  child: CircularProgressIndicator(),
-                )
-              : buildTable(),
-        ],
+        ),
       ),
+      body: commodity.length <= 1
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : Padding(
+              padding: const EdgeInsets.only(top: 18.0),
+              child: buildTable(),
+            ),
     );
   }
 
