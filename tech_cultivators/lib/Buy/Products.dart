@@ -38,6 +38,7 @@ class productpage extends StatelessWidget {
                                   builder: (context) => ProductDetailPage(
                                     Cost: Value[index]["Cost"],
                                     productName: Value[index]["Product Name"],
+                                    ShopName: Shop,
                                   ),
                                 ),
                               );

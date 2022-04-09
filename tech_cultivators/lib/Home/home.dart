@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kisan/Disease_detection/detection.dart';
-import 'package:kisan/Home/Drawer.dart';
+import 'package:kisan/Drawer/Drawer.dart';
 import 'package:kisan/Home/Slider_Home.dart';
+import 'package:kisan/News/news.dart';
 import 'package:kisan/labours/options.dart';
 
 import '../krishi_salla/crop_list.dart';
@@ -61,9 +62,27 @@ class _HomeState extends State<Home> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  column("assets/images/weather.png", "हवामान", context),
-                  column(
-                      "assets/images/news-paper.png", " कृषी वार्ता", context),
+                  InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => WeatherPage()));
+                      },
+                      child: column(
+                          "assets/images/weather.png", "हवामान", context)),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => NewsPage(),
+                        ),
+                      );
+                    },
+                    child: column("assets/images/news-paper.png",
+                        " कृषी वार्ता", context),
+                  ),
                   InkWell(
                       onTap: () {
                         Navigator.push(

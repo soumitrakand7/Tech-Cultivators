@@ -8,8 +8,13 @@ import 'package:kisan/Theme/Colors.dart';
 class ProductDetailPage extends StatefulWidget {
   String productName;
   int Cost;
+  String ShopName;
 
-  ProductDetailPage({Key? key, required this.productName, required this.Cost})
+  ProductDetailPage(
+      {Key? key,
+      required this.ShopName,
+      required this.productName,
+      required this.Cost})
       : super(key: key);
   @override
   _ProductDetailPageState createState() => _ProductDetailPageState();
@@ -187,6 +192,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => PlaceOrder(
+                                      ShopName: widget.ShopName,
                                       img: "",
                                       price: widget.Cost,
                                       productName: widget.productName,
