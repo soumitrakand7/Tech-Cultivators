@@ -139,19 +139,7 @@ class MainDrawer extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
-            Container(
-              child: ListTile(
-                leading: Icon(Icons.circle_notifications_sharp),
-                tileColor: Colors.blue[200],
-                title: Text(
-                  " Notifications",
-                  style: TextStyle(
-                    fontSize: 17,
-                  ),
-                ),
-              ),
-            ),
+            ),  
             InkWell(
               onTap: () {
                 Navigator.popAndPushNamed(context, "/ContactUs");
@@ -184,7 +172,7 @@ class MainDrawer extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
-                Navigator.pushNamed(context, "/Login_page_User");
+                Navigator.pushNamed(context, "/");
               },
               child: ListTile(
                 leading: const Icon(

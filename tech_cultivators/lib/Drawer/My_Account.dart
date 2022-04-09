@@ -17,7 +17,7 @@ class _MyAccountState extends State<MyAccount> {
           image: DecorationImage(
               image: AssetImage("assets/images/login.png"), fit: BoxFit.cover)),
       child: Scaffold(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.green[300],
         body: SafeArea(
           child: SingleChildScrollView(
             child: Stack(

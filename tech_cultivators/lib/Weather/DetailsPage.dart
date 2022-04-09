@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
 class Details extends StatefulWidget {
@@ -45,6 +46,7 @@ class _DetailsState extends State<Details> {
         .toString()
         .split(" ");
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 200, 241, 197),
       appBar: AppBar(
         backgroundColor: Colors.green,
         title: Container(
@@ -63,92 +65,177 @@ class _DetailsState extends State<Details> {
         ),
       ),
       body: SafeArea(
-        child: Stack(
+          child: Padding(
+        padding: const EdgeInsets.all(15.0),
+        child: Column(
           children: [
+            SizedBox(
+              height: 20,
+            ),
             Positioned(
-              left: 20,
-              top: 70,
+              left: 50,
               child: Container(
-                width: 300,
-                child: Lottie.network(
-                    "https://assets2.lottiefiles.com/packages/lf20_kljxfos1.json",
-                    fit: BoxFit.fill),
-              ),
-            ),
-            Positioned(
-              top: 20,
-              left: 100,
-              child: Text(
-                "Location : " + widget.myCity.toString(),
-                style: TextStyle(fontSize: 20),
-              ),
-            ),
-            Positioned(
-                left: 20,
-                top: 300,
-                child: Container(
-                  height: 200,
                   width: 300,
-                  decoration: BoxDecoration(
-                    // color: Color.fromARGB(255, 192, 235, 215),
-
-                    borderRadius: BorderRadius.circular(10),
+                  child: Image(
+                    image: AssetImage(
+                      "assets/icons/${widget.icon}@2x.png",
+                    ),
+                    fit: BoxFit.fill,
+                  )),
+            ),
+            Text(
+              widget.tempCelsius.toString().substring(0, 5) + "°",
+              style: TextStyle(
+                fontSize: 40,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              widget.myCity.toString(),
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+            Divider(),
+            SizedBox(
+              height: 10,
+            ),
+            Center(
+              child: Text(
+                "Additional Information",
+                style: GoogleFonts.playfairDisplay(
+                  fontSize: 25,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Wind  : " + widget.speed.toString() + " Km/hr",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w400,
                   ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "  Sunrise:            " +
-                            time[1].toString().substring(0, 5) +
-                            "  Am",
-                        style: TextStyle(fontSize: 18),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        "  Sunset:              " +
-                            time[1].toString().substring(0, 5) +
-                            " Pm",
-                        style: TextStyle(fontSize: 18),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        "  Temperature:    " +
-                            widget.tempCelsius.toString().substring(0, 5) +
-                            " degree",
-                        style: TextStyle(fontSize: 18),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        "  Windspeed:       " +
-                            widget.speed.toString() +
-                            " Km/hr",
-                        style: TextStyle(fontSize: 18),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        "  Humidity:           " +
-                            widget.humidity.toString() +
-                            "%",
-                        style: TextStyle(fontSize: 18),
-                      ),
-                    ],
+                ),
+                Text(
+                  "Humidity   : " + widget.humidity.toString() + "%",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w400,
                   ),
-                ))
+                )
+              ],
+            ),
+            SizedBox(
+              height: 25,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Pressure  : " + widget.pressure.toString() + " mbar",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                Text("Visibility   : " + widget.visibility.toString() + " m",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w400,
+                    ))
+              ],
+            ),
           ],
         ),
-      ),
+      )),
     );
   }
 }
+// Stack(
+//           children: [
+//             Positioned(
+//               left: 20,
+//               top: 70,
+//               child:
+//             ),
+//             Positioned(
+//               top: 20,
+//               left: 100,
+//               child: Text(
+//                 "Location : " + widget.myCity.toString(),
+//                 style: TextStyle(fontSize: 20),
+//               ),
+//             ),
+//             Positioned(
+//                 left: 20,
+//                 top: 300,
+//                 child: Container(
+//                   height: 200,
+//                   width: 300,
+//                   decoration: BoxDecoration(
+//                     // color: Color.fromARGB(255, 192, 235, 215),
+
+//                     borderRadius: BorderRadius.circular(10),
+//                   ),
+//                   child: Column(
+//                     mainAxisAlignment: MainAxisAlignment.start,
+//                     crossAxisAlignment: CrossAxisAlignment.start,
+//                     children: [
+                      
+//                       SizedBox(
+//                         height: 10,
+//                       ),
+//                       Text(
+//                         "  Sunset:              " +
+//                             time[1].toString().substring(0, 5) +
+//                             " Pm",
+//                         style: TextStyle(fontSize: 18),
+//                       ),
+//                       SizedBox(
+//                         height: 10,
+//                       ),
+//                       Text(
+//                         "  Temperature:    " +
+//                             widget.tempCelsius.toString().substring(0, 5) +
+//                             " degree",
+//                         style: TextStyle(fontSize: 18),
+//                       ),
+//                       SizedBox(
+//                         height: 10,
+//                       ),
+//                       Text(
+//                         "  Windspeed:       " +
+//                             widget.speed.toString() +
+//                             " Km/hr",
+//                         style: TextStyle(fontSize: 18),
+//                       ),
+//                       SizedBox(
+//                         height: 10,
+//                       ),
+//                       Text(
+//                         "  Humidity:           " +
+//                             widget.humidity.toString() +
+//                             "%",
+//                         style: TextStyle(fontSize: 18),
+//                       ),
+//                     ],
+//                   ),
+//                 ))
+//           ],
+//         ),
 // Center(
 //         child: Column(
 //           crossAxisAlignment: CrossAxisAlignment.center,

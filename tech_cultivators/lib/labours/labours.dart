@@ -17,7 +17,7 @@ class _LaboursState extends State<Labours> {
   final TextEditingController _doctorEducation = TextEditingController();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final CollectionReference _firestoreDBDoctorList =
-  FirebaseFirestore.instance.collection("users");
+      FirebaseFirestore.instance.collection("users");
 
   @override
   Widget build(BuildContext context) {
@@ -26,19 +26,19 @@ class _LaboursState extends State<Labours> {
     FocusNode myFocusNode = new FocusNode();
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 248, 243, 247),
-      appBar: AppBar(
-        backgroundColor: Colors.green,
-        elevation: 30,
-        title: Center(
-          child: Text("मजूर"),
-        ),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(20),
-            bottomRight: Radius.circular(20),
-          ),
-        ),
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Colors.green,
+      //   elevation: 30,
+      //   title: Center(
+      //     child: Text("मजूर"),
+      //   ),
+      //   shape: RoundedRectangleBorder(
+      //     borderRadius: BorderRadius.only(
+      //       bottomLeft: Radius.circular(20),
+      //       bottomRight: Radius.circular(20),
+      //     ),
+      //   ),
+      // ),
       // body: StreamBuilder<QuerySnapshot>(
       //     stream: _firestoreDBDoctorList
       //         .doc(_auth.currentUser!.uid)
@@ -146,118 +146,114 @@ class _LaboursState extends State<Labours> {
       body: ListView.builder(
           itemCount: 5,
           itemBuilder: (BuildContext context, int index) {
-          //   Map<String, dynamic> map = snapshots.data!.docs[index]
-          //       .data() as Map<String, dynamic>;
+            //   Map<String, dynamic> map = snapshots.data!.docs[index]
+            //       .data() as Map<String, dynamic>;
             return SingleChildScrollView(
-                child: Column(
-                    children: [
+              child: Column(children: [
+                Container(
+                  margin: EdgeInsets.only(left: 16, right: 16, top: 16),
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(color: Colors.white, width: 3),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(16),
+                      )),
+                  child: Row(
+                    children: <Widget>[
                       Container(
-                        margin: EdgeInsets.only(left: 16, right: 16, top: 16),
+                        margin: EdgeInsets.only(
+                            right: 8, left: 8, top: 8, bottom: 8),
+                        width: 110,
+                        height: 115,
                         decoration: BoxDecoration(
                             color: Colors.white,
                             border: Border.all(color: Colors.white, width: 3),
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(16),
-                            )),
-                        child: Row(
-                          children: <Widget>[
-                            Container(
-                              margin: EdgeInsets.only(
-                                  right: 8, left: 8, top: 8, bottom: 8),
-                              width: 110,
-                              height: 115,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  border: Border.all(
-                                      color: Colors.white, width: 3),
-                                  borderRadius: BorderRadius.circular(30),
-                                  image: DecorationImage(
-                                      image: AssetImage("assets/images/equality.png"), fit: BoxFit.contain)
+                            borderRadius: BorderRadius.circular(30),
+                            image: DecorationImage(
+                                image: AssetImage("assets/images/equality.png"),
+                                fit: BoxFit.contain)),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: Container(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              SizedBox(
+                                height: 6,
                               ),
-                            ),
-                            SizedBox(
-                              width: 10,
-                            ),
-                            Expanded(
-                              child: Container(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    SizedBox(
-                                      height: 6,
-                                    ),
-                                    Container(
-                                      padding: EdgeInsets.only(
-                                          right: 8, top: 4),
-                                      child: Text(
-                                        "नावः सुनील शेट्टी",
-                                        maxLines: 2,
-                                        softWrap: true,
-                                        // style: CustomTextStyle
-                                        //     .textFormFieldSemiBold
-                                        //     .copyWith(fontSize: 20),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 6,
-                                    ),
-                                    Container(
-                                      padding: EdgeInsets.only(
-                                          right: 8, top: 4),
-                                      child: Text(
-                                        "लिंग: पुरूष",
-                                        maxLines: 2,
-                                        softWrap: true,
-                                        // style: CustomTextStyle
-                                        //     .textFormFieldSemiBold
-                                        //     .copyWith(fontSize: 20),
-                                      ),
-                                    ),SizedBox(
-                                      height: 6,
-                                    ),
-                                    Container(
-                                      padding: EdgeInsets.only(
-                                          right: 8, top: 4),
-                                      child: Text(
-                                        "वय: 30",
-                                        maxLines: 2,
-                                        softWrap: true,
-                                        // style: CustomTextStyle
-                                        //     .textFormFieldSemiBold
-                                        //     .copyWith(fontSize: 20),
-                                      ),
-                                    ),
-                                    // SizedBox(
-                                    //   height: 6,
-                                    // ),
-                                    // Container(
-                                    //   child: Row(
-                                    //     mainAxisAlignment:
-                                    //     MainAxisAlignment
-                                    //         .spaceBetween,
-                                    //     children: <Widget>[
-                                    //       Text(
-                                    //         "₹ " +
-                                    //             "40000",
-                                    //         //   style: CustomTextStyle
-                                    //         //       .textFormFieldBlack
-                                    //         //       .copyWith(
-                                    //         // color: Colors.green),
-                                    //       ),
-                                    //     ],
-                                    //   ),
-                                    // ),
-                                  ],
+                              Container(
+                                padding: EdgeInsets.only(right: 8, top: 4),
+                                child: Text(
+                                  "नावः सुनील शेट्टी",
+                                  maxLines: 2,
+                                  softWrap: true,
+                                  // style: CustomTextStyle
+                                  //     .textFormFieldSemiBold
+                                  //     .copyWith(fontSize: 20),
                                 ),
-                              ),)
-                          ],
+                              ),
+                              SizedBox(
+                                height: 6,
+                              ),
+                              Container(
+                                padding: EdgeInsets.only(right: 8, top: 4),
+                                child: Text(
+                                  "लिंग: पुरूष",
+                                  maxLines: 2,
+                                  softWrap: true,
+                                  // style: CustomTextStyle
+                                  //     .textFormFieldSemiBold
+                                  //     .copyWith(fontSize: 20),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 6,
+                              ),
+                              Container(
+                                padding: EdgeInsets.only(right: 8, top: 4),
+                                child: Text(
+                                  "वय: 30",
+                                  maxLines: 2,
+                                  softWrap: true,
+                                  // style: CustomTextStyle
+                                  //     .textFormFieldSemiBold
+                                  //     .copyWith(fontSize: 20),
+                                ),
+                              ),
+                              // SizedBox(
+                              //   height: 6,
+                              // ),
+                              // Container(
+                              //   child: Row(
+                              //     mainAxisAlignment:
+                              //     MainAxisAlignment
+                              //         .spaceBetween,
+                              //     children: <Widget>[
+                              //       Text(
+                              //         "₹ " +
+                              //             "40000",
+                              //         //   style: CustomTextStyle
+                              //         //       .textFormFieldBlack
+                              //         //       .copyWith(
+                              //         // color: Colors.green),
+                              //       ),
+                              //     ],
+                              //   ),
+                              // ),
+                            ],
+                          ),
                         ),
                       )
-                    ]
-                ),);
+                    ],
+                  ),
+                )
+              ]),
+            );
           }),
       floatingActionButton: Padding(
         padding: EdgeInsets.fromLTRB(0, 0, 0, 30),
@@ -270,11 +266,10 @@ class _LaboursState extends State<Labours> {
               builder: (ctx) => AlertDialog(
                 backgroundColor: Color.fromARGB(255, 248, 243, 247),
                 title: Center(
-                  child: Text("मजूराचे माहिती भरा",
+                  child: Text(
+                    "मजूराचे माहिती भरा",
                     style: TextStyle(
-                        color: Colors.green,
-                        fontWeight: FontWeight.w500
-                    ),
+                        color: Colors.green, fontWeight: FontWeight.w500),
                   ),
                 ),
                 content: SingleChildScrollView(
@@ -311,8 +306,8 @@ class _LaboursState extends State<Labours> {
                           keyboardType: TextInputType.text,
                           textInputAction: TextInputAction.next,
                           decoration: InputDecoration(
-                            prefixIcon: Icon(Icons.accessibility,
-                                color: Colors.green),
+                            prefixIcon:
+                                Icon(Icons.accessibility, color: Colors.green),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.green),
                               borderRadius: BorderRadius.circular(7.0),
@@ -343,7 +338,6 @@ class _LaboursState extends State<Labours> {
                             contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
                             hintText: "वय",
                           )),
-
                     ],
                   ),
                 ),
@@ -368,11 +362,11 @@ class _LaboursState extends State<Labours> {
 
                       Navigator.of(ctx).pop();
                     },
-                    child: Text("पूर्ण",
+                    child: Text(
+                      "पूर्ण",
                       style: TextStyle(
-                          color: Colors.green,
-                          fontWeight: FontWeight.w600
-                      ),),
+                          color: Colors.green, fontWeight: FontWeight.w600),
+                    ),
                   ),
                   SizedBox(width: size.width / 5),
                   FlatButton(
@@ -383,11 +377,10 @@ class _LaboursState extends State<Labours> {
                       _doctorEducation.clear();
                       Navigator.of(ctx).pop();
                     },
-                    child: Text("रद्द करा",
+                    child: Text(
+                      "रद्द करा",
                       style: TextStyle(
-                        color: Colors.green,
-                        fontWeight: FontWeight.w600
-                      ),
+                          color: Colors.green, fontWeight: FontWeight.w600),
                     ),
                   ),
                 ],

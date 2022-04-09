@@ -23,7 +23,7 @@ class _Buy_homeState extends State<Buy_home> {
                 Container(
                   margin: EdgeInsets.only(right: 8, left: 8, top: 8, bottom: 8),
                   width: MediaQuery.of(context).size.width,
-                  height: 190,
+                  height: 270,
                   decoration: BoxDecoration(
                     color: Color.fromARGB(255, 192, 235, 215),
                     border: Border.all(color: Color(0xFFCDDAE8), width: 3),
@@ -73,7 +73,7 @@ class _Buy_homeState extends State<Buy_home> {
                 Container(
                   margin: EdgeInsets.only(right: 8, left: 8, top: 8, bottom: 8),
                   width: MediaQuery.of(context).size.width,
-                  height: 300,
+                  height: 370,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     border: Border.all(color: Colors.white, width: 3),
@@ -139,7 +139,6 @@ class _Buy_homeState extends State<Buy_home> {
                         scrollDirection: Axis.horizontal,
                         child: Row(
                           children: [
-                          
                             InkWell(
                               onTap: () {
                                 Navigator.push(
@@ -160,56 +159,56 @@ class _Buy_homeState extends State<Buy_home> {
                     ],
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.only(right: 8, left: 8, top: 8, bottom: 8),
-                  width: MediaQuery.of(context).size.width,
-                  height: 300,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(color: Colors.white, width: 3),
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Which crop do you want to buy ?",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 17),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        children: [
-                          column("assets/images/wheat.png", "Wheat", context),
-                          column("assets/images/corn.png", "Maize", context),
-                          column("assets/images/sugar-cane.png", "Sugarcane",
-                              context),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          children: [
-                            // column("assets/images/seed.png", "Seeds", context),
-                            column(
-                                "assets/images/tomato.png", "Tomato", context),
-                            column("assets/images/green-onion.png", "Onion",
-                                context),
-                            column(
-                                "assets/images/potato.png", "Potato", context),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                // Container(
+                //   margin: EdgeInsets.only(right: 8, left: 8, top: 8, bottom: 8),
+                //   width: MediaQuery.of(context).size.width,
+                //   height: 300,
+                //   decoration: BoxDecoration(
+                //     color: Colors.white,
+                //     border: Border.all(color: Colors.white, width: 3),
+                //     borderRadius: BorderRadius.circular(30),
+                //   ),
+                //   child: Column(
+                //     crossAxisAlignment: CrossAxisAlignment.start,
+                //     children: [
+                //       Text(
+                //         "Which crop do you want to buy ?",
+                //         style: TextStyle(
+                //             color: Colors.black,
+                //             fontWeight: FontWeight.w600,
+                //             fontSize: 17),
+                //       ),
+                //       SizedBox(
+                //         height: 10,
+                //       ),
+                //       Row(
+                //         children: [
+                //           column("assets/images/wheat.png", "Wheat", context),
+                //           column("assets/images/corn.png", "Maize", context),
+                //           column("assets/images/sugar-cane.png", "Sugarcane",
+                //               context),
+                //         ],
+                //       ),
+                //       SizedBox(
+                //         height: 10,
+                //       ),
+                //       SingleChildScrollView(
+                //         scrollDirection: Axis.horizontal,
+                //         child: Row(
+                //           children: [
+                //             // column("assets/images/seed.png", "Seeds", context),
+                //             column(
+                //                 "assets/images/tomato.png", "Tomato", context),
+                //             column("assets/images/green-onion.png", "Onion",
+                //                 context),
+                //             column(
+                //                 "assets/images/potato.png", "Potato", context),
+                //           ],
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
               ],
             ),
           ),
@@ -224,8 +223,8 @@ Widget column(String image, String text, BuildContext context) {
     children: [
       Container(
         margin: EdgeInsets.only(right: 10, left: 10, top: 10, bottom: 10),
-        width: MediaQuery.of(context).size.width / 4,
-        height: 70,
+        width: MediaQuery.of(context).size.width / 4.4,
+        height: 110,
         decoration: BoxDecoration(
             color: Colors.transparent,
             image:

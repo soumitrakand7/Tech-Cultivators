@@ -46,4 +46,4 @@ class _ShopsState extends State<Shops> with SingleTickerProviderStateMixin {
       ),
     );
   }
-}
+} 

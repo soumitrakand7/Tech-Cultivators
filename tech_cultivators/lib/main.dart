@@ -1,11 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:kisan/Authentication/Forgot_password.dart';
 import 'package:kisan/Authentication/Login.dart';
 import 'package:kisan/Authentication/Registration.dart';
 import 'package:kisan/Buy/Buy_home.dart';
 import 'package:kisan/Buy/Confirm_Product.dart';
 import 'package:kisan/Buy/Update.dart';
+import 'package:kisan/Drawer/MY_order.dart';
 import 'package:kisan/Drawer/My_Account.dart';
 import 'package:kisan/Home/home.dart';
 import 'package:kisan/Login/LoginPage.dart';
@@ -30,8 +32,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+          textTheme: GoogleFonts.playfairDisplayTextTheme(
+        Theme.of(context).textTheme,
+      )),
       initialRoute: '/',
       routes: {
         '/': (context) => login_page(),
@@ -39,6 +42,7 @@ class MyApp extends StatelessWidget {
         "/Confirm_Order": (context) => Place_Order(),
         "/Password": (context) => ResetP(),
         "/MyAccount": (context) => MyAccount(),
+        "/Order": (context) => Order(),
         "/Home": (context) => Home(),
         "/register": (context) => registration_page(),
         "/Shop_Registartion": (context) => Shop_Registration(),

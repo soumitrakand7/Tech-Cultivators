@@ -24,11 +24,11 @@ class Shop_Registration extends StatelessWidget {
           child: Text("Shop Registration",
               style: TextStyle(
                 fontSize: 23,
-                fontWeight: FontWeight.bold,
+                fontWeight: FontWeight.w500,
               )),
         ),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
+          borderRadius: BorderRadius.only(  
             bottomLeft: Radius.circular(30),
             bottomRight: Radius.circular(30),
           ),

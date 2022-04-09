@@ -198,7 +198,8 @@ class _Add_ProductState extends State<Add_Product> {
                       height: 20,
                     ),
                     InkWell(
-                      onTap: () {
+                      onTap: () {  
+                    
                         collectionReference
                             .doc(SelectedShop)
                             .collection(SelectedCategory)

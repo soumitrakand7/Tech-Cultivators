@@ -4,7 +4,7 @@ import 'package:kisan/Drawer/Drawer.dart';
 import 'package:kisan/Home/Slider_Home.dart';
 import 'package:kisan/News/news.dart';
 import 'package:kisan/labours/options.dart';
-
+import '../Drawer/MY_order.dart';
 import '../krishi_salla/crop_list.dart';
 import '../Weather/WeatherInfo.dart';
 import '../krishi_yojana/yojana_list.dart';
@@ -20,7 +20,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.green,
         elevation: 30,
@@ -112,34 +112,75 @@ class _HomeState extends State<Home> {
                         "assets/images/handshake.png", " कृषी योजना", context),
                   ),
                   InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const Detection(),
-                        ),
-                      );
-                    },
-                    child: column(
-                        "assets/images/virus.png", "वनस्पती रोग", context),
-                  ),
-                ],
-              ),
-              Align(
-                  alignment: Alignment.topLeft,
-                  child: InkWell(
                       onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const Options(),
+                            builder: (context) => Options(),
                           ),
                         );
                       },
-                      child: column(
-                          "assets/images/workers.png", "मजूर", context))),
+                      child:
+                          column("assets/images/workers.png", "मजूर", context))
+                ],
+              ),
               SizedBox(
-                height: 40,
+                height: 20,
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const Detection(),
+                    ),
+                  );
+                },
+                child: Container(
+                    height: 130,
+                    margin: EdgeInsets.only(left: 8, right: 8, top: 8),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(16),
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black38,
+                          blurRadius: 2.0,
+                          spreadRadius: 0.0,
+                          offset: Offset(
+                              2.0, 2.0), // shadow direction: bottom right
+                        )
+                      ],
+                      // gradient: LinearGradient(
+                      //     begin: Alignment.centerLeft,
+                      //     end: Alignment.centerRight,
+                      //     colors: [Colors.purple, Colors.blue])
+                    ),
+                    child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          // Container(
+
+                          Container(
+                              width: MediaQuery.of(context).size.width * 0.3,
+                              child: column("assets/images/Crop Care.png",
+                                  "Crop Care", context)),
+
+                          Expanded(
+                            child: Text(
+                              "Dignose and treat disease",
+                              maxLines: 2,
+                              softWrap: true,
+                              style: CustomTextStyle.textFormFieldSemiBold
+                                  .copyWith(fontSize: 18, color: Colors.green),
+                            ),
+                          ),
+                        ])),
+              ),
+              SizedBox(
+                height: 30,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -190,24 +231,27 @@ class _HomeState extends State<Home> {
 }
 
 Widget column(String image, String text, BuildContext context) {
-  return Column(
-    children: [
-      Container(
-        margin: const EdgeInsets.only(right: 10, left: 10, top: 10, bottom: 10),
-        width: MediaQuery.of(context).size.width / 4,
-        height: 80,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          // border: Border.all(color: Colors.green, width: 3),
-          // borderRadius: BorderRadius.circular(30),
-          image: DecorationImage(image: AssetImage(image), fit: BoxFit.contain),
+  return Container(
+    child: Column(
+      children: [
+        Container(
+          margin:
+              const EdgeInsets.only(right: 10, left: 10, top: 10, bottom: 10),
+          width: MediaQuery.of(context).size.width / 4,
+          height: 80,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(20),
+            image:
+                DecorationImage(image: AssetImage(image), fit: BoxFit.contain),
+          ),
         ),
-      ),
-      Text(
-        text,
-        style: const TextStyle(
-            color: Colors.green, fontWeight: FontWeight.w600, fontSize: 17),
-      ),
-    ],
+        Text(
+          text,
+          style: const TextStyle(
+              color: Colors.green, fontWeight: FontWeight.w600, fontSize: 17),
+        ),
+      ],
+    ),
   );
 }
