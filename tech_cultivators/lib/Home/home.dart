@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kisan/BazaarBhav/baazarbhav.dart';
 import 'package:kisan/Disease_detection/detection.dart';
 import 'package:kisan/Drawer/Drawer.dart';
 import 'package:kisan/Home/Slider_Home.dart';
@@ -98,7 +99,18 @@ class _HomeState extends State<Home> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  column("assets/images/investing.png", "बाजारभाव", context),
+                  InkWell(
+                    child: column(
+                        "assets/images/investing.png", "बाजारभाव", context),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const BaazarBhav(),
+                        ),
+                      );
+                    },
+                  ),
                   InkWell(
                     onTap: () {
                       Navigator.push(

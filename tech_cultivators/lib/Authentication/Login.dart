@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:animate_do/animate_do.dart';
@@ -26,6 +27,8 @@ class _login_pageState extends State<login_page> {
   String password = "";
   String name = " ";
   bool changeButton = false;
+  FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -137,6 +140,15 @@ class _login_pageState extends State<login_page> {
                             .instance
                             .signInWithEmailAndPassword(
                                 email: email, password: password);
+                        _firestore
+                            .collection('User')
+                            .doc(_auth.currentUser!.uid)
+                            .get()
+                            .then((value) {
+                          userCredential.user!.updateDisplayName(value['Name']);
+                          print(_auth.currentUser!.displayName);
+                        });
+
                         logincomplete(BuildContext, context);
                         await Future.delayed(Duration(seconds: 5));
                         Navigator.pushNamed(context, '/Home');
