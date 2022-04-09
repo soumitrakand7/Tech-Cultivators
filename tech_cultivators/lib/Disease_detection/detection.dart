@@ -1,9 +1,9 @@
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:image_crop/image_crop.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
-// import 'dart:html';
 import 'package:lottie/lottie.dart';
 
 class Detection extends StatefulWidget {
@@ -64,11 +64,13 @@ class _DetectionState extends State<Detection> {
                   height: 20,
                 ),
                 const Text(
-                    "Click Your Crop's picture and \n  find What's wrong with it",
-                    style: TextStyle(
-                        color: Colors.green,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 20)),
+                  "Click Your Crop's picture and \n  find What's wrong with it",
+                  style: TextStyle(
+                    color: Colors.green,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 20,
+                  ),
+                ),
                 InkWell(
                   onTap: () {
                     // Navigator.pushNamed(context, "/Add_Product");
@@ -91,7 +93,7 @@ class _DetectionState extends State<Detection> {
                           _image = imagefile;
                         });
                       }
-                      await _cropImage(imagefile.path);
+                      _cropImage(imagefile.path);
                       await FirebaseStorage.instance
                           .ref("Images/$uploadCode")
                           .putFile(
@@ -110,6 +112,7 @@ class _DetectionState extends State<Detection> {
   }
 
   _cropImage(filePath) async {
+    final permissionsGranted = await ImageCrop.requestPermissions();
     final File? croppedImage = await ImageCropper().cropImage(
       sourcePath: filePath,
       maxWidth: 128,

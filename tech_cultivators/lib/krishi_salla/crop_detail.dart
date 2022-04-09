@@ -8,7 +8,7 @@ class CropDetail extends StatefulWidget {
   final String? yt;
   final String? id;
   final String? img;
-  CropDetail(this.name, this.yt, this.id, this.img);
+  const CropDetail(this.name, this.yt, this.id, this.img);
 
   @override
   State<CropDetail> createState() => _CropDetailState();
@@ -18,6 +18,7 @@ class _CropDetailState extends State<CropDetail> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+    
     var firestoreDB = FirebaseFirestore.instance
         .collection("crop_suggetions")
         .doc(widget.id!)
