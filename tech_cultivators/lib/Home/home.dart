@@ -29,7 +29,6 @@ class _HomeState extends State<Home> {
           child: Text("Tech Cultivators"),
         ),
         shape: const RoundedRectangleBorder(
-          
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(20),
             bottomRight: Radius.circular(20),
@@ -38,12 +37,12 @@ class _HomeState extends State<Home> {
       ),
       drawer: MainDrawer(),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.only(left: 5, right: 5),
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const SizedBox(
-                height: 5,
+              SizedBox(
+                height: 10,
               ),
               slider(),
               const SizedBox(
@@ -61,7 +60,7 @@ class _HomeState extends State<Home> {
                                 builder: (context) => WeatherPage()));
                       },
                       child: column(
-                          "assets/images/weather.png", "हवामान", context)),
+                          "assets/images/weather.png", "Weather", context)),
                   InkWell(
                     onTap: () {
                       Navigator.push(
@@ -71,8 +70,8 @@ class _HomeState extends State<Home> {
                         ),
                       );
                     },
-                    child: column("assets/images/news-paper.png",
-                        " कृषी वार्ता", context),
+                    child:
+                        column("assets/images/news-paper.png", "News", context),
                   ),
                   InkWell(
                       onTap: () {
@@ -81,8 +80,8 @@ class _HomeState extends State<Home> {
                             MaterialPageRoute(
                                 builder: (context) => CropList()));
                       },
-                      child: column("assets/images/Krushi_Salla.jpg",
-                          "क्रुशी सल्ला", context))
+                      child: column(
+                          "assets/images/Krushi_Salla.jpg", "advice", context))
                 ],
               ),
               Row(
@@ -91,7 +90,7 @@ class _HomeState extends State<Home> {
                 children: [
                   InkWell(
                     child: column(
-                        "assets/images/investing.png", "बाजारभाव", context),
+                        "assets/images/investing.png", "Market price", context),
                     onTap: () {
                       Navigator.push(
                         context,
@@ -110,8 +109,8 @@ class _HomeState extends State<Home> {
                         ),
                       );
                     },
-                    child: column(
-                        "assets/images/handshake.png", " कृषी योजना", context),
+                    child: column("assets/images/handshake.png",
+                        "  Agricultural plan", context),
                   ),
                   InkWell(
                       onTap: () {
@@ -123,7 +122,7 @@ class _HomeState extends State<Home> {
                         );
                       },
                       child:
-                          column("assets/images/workers.png", "मजूर", context))
+                          column("assets/images/workers.png", "Labor", context))
                 ],
               ),
               SizedBox(
