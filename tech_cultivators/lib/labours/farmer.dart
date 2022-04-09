@@ -125,7 +125,7 @@ class _FarmersState extends State<Farmers> {
                                               right: 8, top: 4),
                                           child: Text(
                                             // "स्थान: ",
-                                            "स्थान: "+ map['email'],
+                                            "स्थान: "+ map['Address'],
                                             maxLines: 2,
                                             softWrap: true,
                                             // style: CustomTextStyle
