@@ -39,6 +39,7 @@ dependencies:
   firebase_auth: ^3.3.12
   cloud_firestore: ^3.1.11
   animate_do: ^2.1.0
+  image_crop: ^0.4.0
   shared_preferences: ^2.0.13
   lottie: ^1.2.2
   fluttertoast: ^8.0.9
