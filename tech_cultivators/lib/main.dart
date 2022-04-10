@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
       )),
       initialRoute: '/',
       routes: {
-        '/': (context) => SplashScreen(),
+        '/': (context) => Add_Product(),
         "/Adress": (context) => Address(),
         "/Confirm_Order": (context) => Place_Order(),
         "/Password": (context) => ResetP(),

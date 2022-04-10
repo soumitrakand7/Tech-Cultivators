@@ -1,5 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class Upload extends StatefulWidget {
   String shopName;
@@ -12,6 +15,16 @@ class Upload extends StatefulWidget {
 }
 
 class _UploadState extends State<Upload> {
+  Future<String> downloadURL(String imageURL) async {
+    String downloadUrl =
+        await FirebaseStorage.instance.ref(imageURL).getDownloadURL();
+    return downloadUrl;
+  }
+
+  XFile? _image;
+  String imageURL =
+      "https://st4.depositphotos.com/14953852/22772/v/600/depositphotos_227725020-stock-illustration-image-available-icon-flat-vector.jpg";
+  String uploadCode = DateTime.now().hashCode.toString();
   @override
   //  FirebaseFirestore db = FirebaseFirestore.instance;
   // var firestoreDB = FirebaseFirestore.instance.collection("Shpos").snapshots();
@@ -41,70 +54,92 @@ class _UploadState extends State<Upload> {
             ),
           ),
         ),
-        body: Column(children: [
-          Column(
-            children: [
-              SizedBox(
-                height: 10,
-              ),
-              data(" ProductName", "Enter ProductName", false, _productName),
-              SizedBox(
-                height: 20,
-              ),
-              data(
-                  " ProductPrice", "Enter Product Price", false, _productPrice),
-              SizedBox(
-                height: 20,
-              ),
-              data(" ProductDetail", "Enter deatail description of product",
-                  false, _ProductDetail),
-              SizedBox(
-                height: 20,
-              ),
-              data(
-                "Image",
-                "Upload image of product",
-                false,
-                _productImage,
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          InkWell(
-            onTap: () {
-              collectionReference
-                  .doc(widget.shopName)
-                  .collection(widget.Category)
-                  .add({
-                "Product Name": _productName.text,
-                "Cost": int.parse(_productPrice.text),
-                "discription": _ProductDetail.text,
-              });
-              // Navigator.pushNamed(context, '/O_Nursery_List');
-
-              SAP(BuildContext, context);
-            },
-            child: Container(
-              height: 60,
-              width: 200,
-              alignment: Alignment.center,
-              child: Text(
-                "Add Product",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18),
-              ),
-              decoration: BoxDecoration(
-                  color: Colors.green, borderRadius: BorderRadius.circular(40)),
+        body: Column(
+          children: [
+            Column(
+              children: [
+                SizedBox(
+                  height: 10,
+                ),
+                data(" ProductName", "Enter ProductName", false, _productName),
+                SizedBox(
+                  height: 20,
+                ),
+                data(" ProductPrice", "Enter Product Price", false,
+                    _productPrice),
+                SizedBox(
+                  height: 20,
+                ),
+                data(" ProductDetail", "Enter deatail description of product",
+                    false, _ProductDetail),
+                SizedBox(
+                  height: 20,
+                ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.green,
+                    fixedSize: const Size(175, 50),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                  onPressed: () async {
+                    Navigator.pop(context);
+                    var imagefile = await ImagePicker()
+                        .pickImage(source: ImageSource.camera);
+                    if (imagefile != null) {
+                      setState(() {
+                        _image = imagefile;
+                      });
+                      await FirebaseStorage.instance
+                          .ref("Images/$uploadCode")
+                          .putFile(File(imagefile.path));
+                    }
+                  },
+                  child: Text("Click Image"),
+                ),
+              ],
             ),
-          ),
-        ]),
+            const SizedBox(
+              height: 20,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            InkWell(
+              onTap: () async {
+                imageURL = await downloadURL("Images/$uploadCode");
+                collectionReference
+                    .doc(widget.shopName)
+                    .collection(widget.Category)
+                    .add({
+                  "Product Name": _productName.text,
+                  "Cost": int.parse(_productPrice.text),
+                  "discription": _ProductDetail.text,
+                  "imgae url": imageURL,
+                });
+                // Navigator.pushNamed(context, '/O_Nursery_List');
+
+                SAP(BuildContext, context);
+              },
+              child: Container(
+                height: 60,
+                width: 200,
+                alignment: Alignment.center,
+                child: Text(
+                  "Add Product",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18),
+                ),
+                decoration: BoxDecoration(
+                    color: Colors.green,
+                    borderRadius: BorderRadius.circular(40)),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -147,22 +182,23 @@ Widget data(
 
 void SAP(BuildContext, Context) {
   var alertDialog = Container(
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)),
-      child: Container(
-        child: AlertDialog(
-          title: Text(
-            'Product Added',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          content: Text(
-            "Succesfully",
-            textAlign: TextAlign.center,
+    decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)),
+    child: Container(
+      child: AlertDialog(
+        title: Text(
+          'Product Added',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
           ),
         ),
-      ));
+        content: Text(
+          "Succesfully",
+          textAlign: TextAlign.center,
+        ),
+      ),
+    ),
+  );
 
   showDialog(
       context: Context,
