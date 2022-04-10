@@ -25,12 +25,12 @@ class registration_page extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green,
-        title: Text("Registration",
+        title: const Text("Registration",
             style: TextStyle(
               fontSize: 23,
               fontWeight: FontWeight.bold,
             )),
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(30),
             bottomRight: Radius.circular(30),
@@ -197,7 +197,7 @@ Widget register(String labelText, String hintText, bool x, Icon myicon,
       },
       obscureText: x,
       controller: z,
-      style: TextStyle(fontSize: 15),
+      style: const TextStyle(fontSize: 15),
       validator: (value) {
         if (value == null || value.isEmpty) {
           return "please Enter some text";
@@ -205,19 +205,19 @@ Widget register(String labelText, String hintText, bool x, Icon myicon,
       },
       decoration: InputDecoration(
           labelText: labelText,
-          labelStyle: TextStyle(color: Colors.black),
+          labelStyle: const TextStyle(color: Colors.black),
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(50),
-              borderSide: BorderSide(color: Colors.amber, width: 2)),
+              borderSide: const BorderSide(color: Colors.amber, width: 2)),
           prefixIcon: myicon,
           hintText: hintText,
-          contentPadding: EdgeInsets.symmetric(horizontal: 20)),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 20)),
     ),
   );
 }
 
 void WP(BuildContext, Context) {
-  var alertDialog = AlertDialog(
+  var alertDialog = const AlertDialog(
     title: Text("Please Enter Strong Password"),
     // content: Text("Now you can Buy a product")
   );
@@ -230,7 +230,7 @@ void WP(BuildContext, Context) {
 }
 
 void EU(BuildContext, Context) {
-  var alertDialog = AlertDialog(
+  var alertDialog = const AlertDialog(
     title: Text("The account already exists for that email."),
     content: Text("Please enter new Email ID"),
     // content: Text("Now you can Buy a product")
@@ -244,7 +244,7 @@ void EU(BuildContext, Context) {
 }
 
 void SC(BuildContext, Context) {
-  var alertDialog = AlertDialog(
+  var alertDialog = const AlertDialog(
     title: Text("You have successfuly registered on Agventure"),
     content: Text("Please Sign In"),
     // content: Text("Now you can Buy a product")
