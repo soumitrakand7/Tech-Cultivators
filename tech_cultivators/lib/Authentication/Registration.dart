@@ -37,146 +37,146 @@ class registration_page extends StatelessWidget {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          child: Column(
-              // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                const SizedBox(height: 10),
-                const Text('Create Your Account',
-                    style: TextStyle(
-                      fontSize: 33,
-                      fontWeight: FontWeight.bold,
-                    )),
-                const Padding(
-                  padding: EdgeInsets.all(20.0),
-                  child: Text('Create a new account',
+      body: FadeInDownBig(
+        child: SingleChildScrollView(
+          child: Container(
+            child: Column(
+                // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  SizedBox(height: 10),
+                  Text('Create Your Account',
                       style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 33,
+                        fontWeight: FontWeight.bold,
                       )),
-                ),
-                Container(
-                  child: Form(
-                    key: _formKey,
-                    child: Column(
-                      children: <Widget>[
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        register("Name", "Enter Your Name", false,
-                            const Icon(Icons.people), "", _textEditingController1),
-                        const SizedBox(height: 15),
-                        register(
-                            "Number",
-                            "Enter Your Mobile Number",
-                            false,
-                            const Icon(Icons.contact_page),
-                            "",
-                            _textEditingController2),
-                        const SizedBox(height: 15),
-                        register(
-                            " Email ID",
-                            "Enter your Email",
-                            false,
-                            const Icon(Icons.email_outlined),
-                            email,
-                            _textEditingController3),
-                        const SizedBox(height: 15),
-                        register("Image", "Paste your image url", false,
-                            const Icon(Icons.lock), "", _textEditingController7),
-                        const SizedBox(height: 15),
-                        register(
-                            "Address",
-                            "Enter your address",
-                            false,
-                            const Icon(Icons.location_city),
-                            "",
-                            _textEditingController6),
-                        const SizedBox(height: 15),
-                        register(
-                            " Password",
-                            "Enter Your Password",
-                            true,
-                            const Icon(Icons.lock),
-                            password,
-                            _textEditingController4),
-                        const SizedBox(height: 15),
-                        register(
-                            "Confirm Password",
-                            "Confirmed Your Password",
-                            true,
-                            const Icon(Icons.lock),
-                            "confirmedp",
-                            _textEditingController5),
-                        const SizedBox(height: 15),
-                        InkWell(
-                          onTap: () async {
-                            // Validate returns true if the form is valid, or false otherwise.
-                            if (_formKey.currentState!.validate()) {
-                              // If the form is valid, display a snackbar. In the real world,
-                              // you'd often call a server or save the information in a database.
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                    content: Text('Processing Data')),
-                              );
-                            }
-                            try {
-                              UserCredential userCredential = await FirebaseAuth
-                                  .instance
-                                  .createUserWithEmailAndPassword(
-                                      email: _textEditingController3.text,
-                                      password: _textEditingController4.text);
-                              SC(BuildContext, context);
-                              await Future.delayed(const Duration(seconds: 4));
-                              Navigator.pushNamed(context, '/');
-                            } on FirebaseAuthException catch (e) {
-                              if (e.code == 'weak-password') {
-                                WP(BuildContext, context);
-                                print('The password provided is too weak.');
-                              } else if (e.code == 'email-already-in-use') {
-                                EU(BuildContext, context);
-                                print(
-                                    'The account already exists for that email.');
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Text('Create a new account',
+                        style: TextStyle(
+                          fontSize: 20,
+                        )),
+                  ),
+                  Container(
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        children: <Widget>[
+                          SizedBox(
+                            height: 10,
+                          ),
+                          register("Name", "Enter Your Name", false,
+                              Icon(Icons.people), "", _textEditingController1),
+                          SizedBox(height: 15),
+                          register(
+                              "Number",
+                              "Enter Your Mobile Number",
+                              false,
+                              Icon(Icons.contact_page),
+                              "",
+                              _textEditingController2),
+                          SizedBox(height: 15),
+                          register(
+                              " Email ID",
+                              "Enter your Email",
+                              false,
+                              Icon(Icons.email_outlined),
+                              email,
+                              _textEditingController3),
+                          SizedBox(height: 15),
+                          register(
+                              "Address",
+                              "Enter your address",
+                              false,
+                              Icon(Icons.location_city),
+                              "",
+                              _textEditingController6),
+                          SizedBox(height: 15),
+                          register(
+                              " Password",
+                              "Enter Your Password",
+                              true,
+                              Icon(Icons.lock),
+                              password,
+                              _textEditingController4),
+                          SizedBox(height: 15),
+                          register(
+                              "Confirm Password",
+                              "Confirmed Your Password",
+                              true,
+                              Icon(Icons.lock),
+                              "confirmedp",
+                              _textEditingController5),
+                          SizedBox(height: 85),
+                          InkWell(
+                            onTap: () async {
+                              // Validate returns true if the form is valid, or false otherwise.
+                              if (_formKey.currentState!.validate()) {
+                                // If the form is valid, display a snackbar. In the real world,
+                                // you'd often call a server or save the information in a database.
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                      content: Text('Processing Data')),
+                                );
                               }
-                            } catch (e) {
-                              print(e);
-                            }
-                            await collectionReference
-                                .doc(_auth.currentUser!.uid)
-                                .set({
-                              'Name': _textEditingController1.text,
-                              'MObile No': _textEditingController2.text,
-                              'email': _textEditingController3.text,
-                              'Image': _textEditingController7.text,
-                              'password': _textEditingController4.text,
-                              'Address': _textEditingController6.text,
-                              "uid": _auth.currentUser!.uid
-                            });
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              height: 60,
-                              alignment: Alignment.center,
-                              child: const Text(
-                                "Sign Up",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18),
+                              try {
+                                UserCredential userCredential =
+                                    await FirebaseAuth.instance
+                                        .createUserWithEmailAndPassword(
+                                            email: _textEditingController3.text,
+                                            password:
+                                                _textEditingController4.text);
+                                SC(BuildContext, context);
+                                await Future.delayed(Duration(seconds: 4));
+                                Navigator.pushNamed(context, '/');
+                              } on FirebaseAuthException catch (e) {
+                                if (e.code == 'weak-password') {
+                                  WP(BuildContext, context);
+                                  print('The password provided is too weak.');
+                                } else if (e.code == 'email-already-in-use') {
+                                  EU(BuildContext, context);
+                                  print(
+                                      'The account already exists for that email.');
+                                }
+                              } catch (e) {
+                                print(e);
+                              }
+                              await collectionReference
+                                  .doc(_auth.currentUser!.uid)
+                                  .set({
+                                'Name': _textEditingController1.text,
+                                'MObile No': _textEditingController2.text,
+                                'email': _textEditingController3.text,
+                                'Image': _textEditingController7.text,
+                                'password': _textEditingController4.text,
+                                'Address': _textEditingController6.text,
+                                "uid": _auth.currentUser!.uid
+                              });
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height: 60,
+                                alignment: Alignment.center,
+                                child: Text(
+                                  "Sign Up",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18),
+                                ),
+                                decoration: BoxDecoration(
+                                    color: Colors.green,
+                                    border: Border.all(color: Colors.white),
+                                    borderRadius: BorderRadius.circular(20)),
                               ),
-                              decoration: BoxDecoration(
-                                  color: Colors.green,
-                                  border: Border.all(color: Colors.white),
-                                  borderRadius: BorderRadius.circular(20)),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ]),
+                ]),
+          ),
         ),
       ),
     );

@@ -42,19 +42,19 @@ class MainDrawer extends StatelessWidget {
                           return ClipRect(
                             child: Container(
                               width: 200,
-                              height: 200,
+                              height: 234.5,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Colors.orange,
+                                color: Colors.white,
                                 image: DecorationImage(
-                                  image: NetworkImage("${data['Image']}"),
+                                  image: NetworkImage(
+                                      "https://cdn2.vectorstock.com/i/1000x1000/69/51/farmer-stylized-portrait-organic-products-logo-vector-22656951.jpg"),
                                   fit: BoxFit.cover,
                                 ),
                               ),
                             ),
                           );
                         }
-
                         return Center(child: Text("loading"));
                       },
                     ),
@@ -110,21 +110,21 @@ class MainDrawer extends StatelessWidget {
                 ),
               ),
             ),
-            InkWell(
-              onTap: () {
-                Navigator.pushNamed(context, "/Cart");
-              },
-              child: ListTile(
-                leading: Icon(Icons.add_shopping_cart),
-                tileColor: Colors.blue[200],
-                title: Text(
-                  "My Cart",
-                  style: TextStyle(
-                    fontSize: 17,
-                  ),
-                ),
-              ),
-            ),
+            // InkWell(
+            //   onTap: () {
+            //     Navigator.pushNamed(context, "/Cart");
+            //   },
+            //   child: ListTile(
+            //     leading: Icon(Icons.add_shopping_cart),
+            //     tileColor: Colors.blue[200],
+            //     title: Text(
+            //       "My Cart",
+            //       style: TextStyle(
+            //         fontSize: 17,
+            //       ),
+            //     ),
+            //   ),
+            // ),
             InkWell(
               onTap: () {
                 Navigator.pushNamed(context, "/Order");
@@ -134,18 +134,6 @@ class MainDrawer extends StatelessWidget {
                 tileColor: Colors.blue[200],
                 title: Text(
                   "My Orders",
-                  style: TextStyle(
-                    fontSize: 17,
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              child: ListTile(
-                leading: Icon(Icons.circle_notifications_sharp),
-                tileColor: Colors.blue[200],
-                title: Text(
-                  " Notifications",
                   style: TextStyle(
                     fontSize: 17,
                   ),
@@ -184,7 +172,7 @@ class MainDrawer extends StatelessWidget {
             ),
             InkWell(
               onTap: () {
-                Navigator.pushNamed(context, "/Login_page_User");
+                Navigator.pushNamed(context, "/");
               },
               child: ListTile(
                 leading: const Icon(

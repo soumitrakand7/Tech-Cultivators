@@ -30,7 +30,7 @@ class _CropListState extends State<CropList> {
         backgroundColor: Colors.green,
         elevation: 30,
         title: Center(
-          child: Text("कृषी सल्ला"),
+          child: Text("Agricultural advice"),
         ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(

@@ -9,13 +9,17 @@ class ProductDetailPage extends StatefulWidget {
   String productName;
   int Cost;
   String ShopName;
+  String ProductImage;
+  String dis;
 
-  ProductDetailPage(
-      {Key? key,
-      required this.ShopName,
-      required this.productName,
-      required this.Cost})
-      : super(key: key);
+  ProductDetailPage({
+    Key? key,
+    required this.ShopName,
+    required this.productName,
+    required this.ProductImage,
+    required this.Cost,
+    required this.dis,
+  }) : super(key: key);
   @override
   _ProductDetailPageState createState() => _ProductDetailPageState();
 }
@@ -53,8 +57,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                 child: Stack(
                   children: <Widget>[
                     FadeInDownBig(
-                        child: Image(
-                            image: AssetImage("assets/images/fertilizer.png"))),
+                        child: Image(image: NetworkImage(widget.ProductImage))),
                     SafeArea(
                       child: IconButton(
                           icon: Icon(
@@ -130,7 +133,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                     FadeInDownBig(
                       delay: Duration(milliseconds: 450),
                       child: Text(
-                        "Nice Product",
+                        widget.dis,
                         style: TextStyle(
                             fontSize: 15, color: black.withOpacity(0.7)),
                       ),
@@ -193,7 +196,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                             MaterialPageRoute(
                                 builder: (context) => PlaceOrder(
                                       ShopName: widget.ShopName,
-                                      img: "",
+                                      img: widget.ProductImage,
                                       price: widget.Cost,
                                       productName: widget.productName,
                                     )),

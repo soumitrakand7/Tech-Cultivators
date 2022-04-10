@@ -18,7 +18,7 @@ class _CropDetailState extends State<CropDetail> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    
+
     var firestoreDB = FirebaseFirestore.instance
         .collection("crop_suggetions")
         .doc(widget!.id!)
@@ -31,7 +31,7 @@ class _CropDetailState extends State<CropDetail> {
           backgroundColor: Colors.green,
           elevation: 30,
           title: Center(
-            child: Text("कृषी सल्ला"),
+            child: Text("Agricultural advice"),
           ),
           actions: [
             IconButton(

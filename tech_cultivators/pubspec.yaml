@@ -36,11 +36,13 @@ dependencies:
   cupertino_icons: ^1.0.2
   carousel_slider: ^4.0.0
   firebase_core: ^1.14.0
+  google_fonts: ^2.3.1
   firebase_auth: ^3.3.12
   cloud_firestore: ^3.1.11
   animate_do: ^2.1.0
   image_crop: ^0.4.0
   shared_preferences: ^2.0.13
+  smooth_page_indicator: ^1.0.0+2
   lottie: ^1.2.2
   fluttertoast: ^8.0.9
   url_launcher: ^6.0.20
