@@ -42,13 +42,13 @@ class MainDrawer extends StatelessWidget {
                           return ClipRect(
                             child: Container(
                               width: 200,
-                              height: 200,
+                              height: 234.5,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: Colors.white,
                                 image: DecorationImage(
                                   image: NetworkImage(
-                                      "https://i.pinimg.com/originals/8b/ae/a6/8baea65ab0db4a06580e4f814babeca5.png"),
+                                      "https://cdn2.vectorstock.com/i/1000x1000/69/51/farmer-stylized-portrait-organic-products-logo-vector-22656951.jpg"),
                                   fit: BoxFit.cover,
                                 ),
                               ),

@@ -16,12 +16,12 @@ class _YojanaListState extends State<YojanaList> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-          backgroundColor: Colors.white,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.green,
         elevation: 30,
         title: Center(
-          child: Text("कृषी योजना"),
+          child: Text("Agricultural Plans"),
         ),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(

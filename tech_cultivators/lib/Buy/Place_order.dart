@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import "package:flutter/material.dart";
@@ -64,339 +65,343 @@ class _PlaceOrderState extends State<PlaceOrder> {
               borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(30),
                   bottomRight: Radius.circular(30)))),
-      body: Padding(
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: Column(
-          children: [
-            SizedBox(height: 10),
-            Container(
-                child: Material(
-              color: Colors.white,
-              // elevation: 2.0,
-              borderRadius: BorderRadius.circular(5),
-              shadowColor: Colors.green,
-              child: FutureBuilder<DocumentSnapshot>(
-                future: collectionReference.doc(_auth.currentUser!.uid).get(),
-                builder: (BuildContext context,
-                    AsyncSnapshot<DocumentSnapshot> snapshot) {
-                  if (snapshot.hasError) {
-                    return Text("Something went wrong");
-                  }
+      body: FadeInDownBig(
+        child: Padding(
+          padding: const EdgeInsets.only(left: 10, right: 10),
+          child: Column(
+            children: [
+              SizedBox(height: 10),
+              Container(
+                  child: Material(
+                color: Colors.white,
+                // elevation: 2.0,
+                borderRadius: BorderRadius.circular(5),
+                shadowColor: Colors.green,
+                child: FutureBuilder<DocumentSnapshot>(
+                  future: collectionReference.doc(_auth.currentUser!.uid).get(),
+                  builder: (BuildContext context,
+                      AsyncSnapshot<DocumentSnapshot> snapshot) {
+                    if (snapshot.hasError) {
+                      return Text("Something went wrong");
+                    }
 
-                  if (snapshot.hasData && !snapshot.data!.exists) {
-                    return Text("Document does not exist");
-                  }
+                    if (snapshot.hasData && !snapshot.data!.exists) {
+                      return Text("Document does not exist");
+                    }
 
-                  if (snapshot.connectionState == ConnectionState.done) {
-                    Map<String, dynamic> data =
-                        snapshot.data!.data() as Map<String, dynamic>;
-                    return Column(
-                      children: [
-                        Container(
-                          alignment: Alignment.topLeft,
-                          child: Text(
-                            "${data["Name"]}",
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                              fontSize: 15,
+                    if (snapshot.connectionState == ConnectionState.done) {
+                      Map<String, dynamic> data =
+                          snapshot.data!.data() as Map<String, dynamic>;
+                      return Column(
+                        children: [
+                          Container(
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              "${data["Name"]}",
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                fontSize: 15,
+                              ),
                             ),
                           ),
-                        ),
-                        SizedBox(height: 5),
-                        Container(
-                          alignment: Alignment.topLeft,
-                          child: Text(
-                            "${data["Address"]}",
-                            style: TextStyle(fontSize: 15),
+                          SizedBox(height: 5),
+                          Container(
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              "${data["Address"]}",
+                              style: TextStyle(fontSize: 15),
+                            ),
                           ),
-                        ),
-                        SizedBox(height: 5),
-                        Container(
-                          alignment: Alignment.topLeft,
-                          child: Text(
-                            "${data["MObile No"]}",
-                            style: TextStyle(fontSize: 15),
+                          SizedBox(height: 5),
+                          Container(
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              "${data["MObile No"]}",
+                              style: TextStyle(fontSize: 15),
+                            ),
                           ),
-                        ),
-                      ],
-                    );
-                  }
+                        ],
+                      );
+                    }
 
-                  return Center(child: Text(""));
+                    return Center(child: Text(""));
+                  },
+                ),
+              )),
+              SizedBox(height: 10),
+              FlatButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10)),
+                color: Colors.green[500],
+                onPressed: () {
+                  Navigator.pushNamed(context, "/Adress");
                 },
-              ),
-            )),
-            SizedBox(height: 10),
-            FlatButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)),
-              color: Colors.green[500],
-              onPressed: () {
-                Navigator.pushNamed(context, "/Adress");
-              },
-              child: Container(
-                height: 50,
-                child: Center(
-                  child: Text(
-                    "Change or Upadate Address",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
-                        fontWeight: FontWeight.w600),
+                child: Container(
+                  height: 50,
+                  child: Center(
+                    child: Text(
+                      "Change or Upadate Address",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w600),
+                    ),
                   ),
                 ),
               ),
-            ),
-            SizedBox(height: 10),
-            Container(
-              child: Material(
-                color: Colors.white,
-                // elevation: 2.0,
-                borderRadius: BorderRadius.circular(5),
-                shadowColor: Colors.green,
-                child: Stack(
-                  children: <Widget>[
-                    Container(
-                      margin: EdgeInsets.only(left: 16, right: 16, top: 16),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(16))),
-                      child: Row(
-                        children: <Widget>[
-                          Container(
-                            margin: EdgeInsets.only(
-                                right: 1, left: 1, top: 8, bottom: 8),
-                            width: 90,
-                            height: 100,
-                            decoration: BoxDecoration(
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(14)),
-                                color: Colors.blue.shade200,
-                                image: DecorationImage(
-                                    image: NetworkImage(widget.img),
-                                    fit: BoxFit.cover)),
-                          ),
-                          Expanded(
-                            child: Container(
-                              padding: const EdgeInsets.all(30.0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Container(
-                                    padding: EdgeInsets.only(right: 8, top: 4),
-                                    child: Text(widget.productName,
-                                        maxLines: 2,
-                                        softWrap: true,
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold)
-                                        // style: CustomTextStyle.textFormFieldSemiBold
-                                        //     .copyWith(fontSize: 14),
-                                        ),
-                                  ),
-                                  SizedBox(height: 6),
-                                  Text(widget.ShopName,
-                                      style: TextStyle(
-                                        fontSize: 15,
-                                      )),
-                                  SizedBox(height: 2),
-                                  Container(
-                                    child: Text("₹ ${widget.price}",
+              SizedBox(height: 10),
+              Container(
+                child: Material(
+                  color: Colors.white,
+                  // elevation: 2.0,
+                  borderRadius: BorderRadius.circular(5),
+                  shadowColor: Colors.green,
+                  child: Stack(
+                    children: <Widget>[
+                      Container(
+                        margin: EdgeInsets.only(left: 16, right: 16, top: 16),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius:
+                                BorderRadius.all(Radius.circular(16))),
+                        child: Row(
+                          children: <Widget>[
+                            Container(
+                              margin: EdgeInsets.only(
+                                  right: 1, left: 1, top: 8, bottom: 8),
+                              width: 90,
+                              height: 100,
+                              decoration: BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(14)),
+                                  color: Colors.blue.shade200,
+                                  image: DecorationImage(
+                                      image: NetworkImage(widget.img),
+                                      fit: BoxFit.cover)),
+                            ),
+                            Expanded(
+                              child: Container(
+                                padding: const EdgeInsets.all(30.0),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Container(
+                                      padding:
+                                          EdgeInsets.only(right: 8, top: 4),
+                                      child: Text(widget.productName,
+                                          maxLines: 2,
+                                          softWrap: true,
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold)
+                                          // style: CustomTextStyle.textFormFieldSemiBold
+                                          //     .copyWith(fontSize: 14),
+                                          ),
+                                    ),
+                                    SizedBox(height: 6),
+                                    Text(widget.ShopName,
                                         style: TextStyle(
                                           fontSize: 15,
                                         )),
-                                  ),
-                                  SizedBox(height: 4),
-                                  Text("Delivery On :  ${Delivery}",
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold)),
-                                ],
+                                    SizedBox(height: 2),
+                                    Container(
+                                      child: Text("₹ ${widget.price}",
+                                          style: TextStyle(
+                                            fontSize: 15,
+                                          )),
+                                    ),
+                                    SizedBox(height: 4),
+                                    Text("Delivery On :  ${Delivery}",
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold)),
+                                  ],
+                                ),
                               ),
-                            ),
-                            flex: 100,
-                          )
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Container(
-              child: Material(
-                color: Colors.white,
-                // elevation: 2.0,
-                borderRadius: BorderRadius.circular(5),
-                shadowColor: Colors.green,
-                child: Column(
-                  children: [
-                    Text(
-                      "Price Detail",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Container(
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            width: 15,
-                          ),
-                          Text("Price",
-                              style: TextStyle(
-                                fontSize: 15,
-                              )),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.6558,
-                          ),
-                          Text("+ ${Price}"),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Container(
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            width: 15,
-                          ),
-                          Text("Discount",
-                              style: TextStyle(
-                                fontSize: 15,
-                              )),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.58,
-                          ),
-                          Text("- ${Discount}"),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Container(
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            width: 15,
-                          ),
-                          Text("Delivery Charges",
-                              style: TextStyle(
-                                fontSize: 15,
-                              )),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.448,
-                          ),
-                          Text("+ ${DeliveryCharges}"),
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Container(
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            width: 15,
-                          ),
-                          Text("Amount Payable",
-                              style: TextStyle(
-                                  fontSize: 15, fontWeight: FontWeight.bold)),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.448,
-                          ),
-                          Text("+ ${AmountPayable}"),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(height: MediaQuery.of(context).size.height * 0.10),
-            Container(
-              child: Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(35.0),
-                      child: Container(
-                        child: Column(
-                          children: [
-                            Text(
-                              "Total",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                fontSize: 15,
-                              ),
-                            ),
-                            Text(
-                              "₹ ${AmountPayable}",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold),
-                            ),
+                              flex: 100,
+                            )
                           ],
                         ),
                       ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        final id = collectionReference
-                            .doc(_auth.currentUser!.uid)
-                            .collection("OrderList")
-                            .add({
-                          "ProductName": widget.productName,
-                          "ProductPrice": AmountPayable,
-                          "Image": widget.img,
-                          "NurseryName": widget.ShopName,
-                          "DeliveryDate": Delivery,
-                          "OrderDate": OrderDate
-                        });
-
-                        Fluttertoast.showToast(
-                            msg: " Order successful ",
-                            toastLength: Toast.LENGTH_LONG,
-                            gravity: ToastGravity.BOTTOM,
-                            timeInSecForIosWeb: 1,
-                            backgroundColor: Colors.green,
-                            textColor: Colors.white,
-                            fontSize: 16.0);
-                        Navigator.pushNamed(context, "/Confirm_Order");
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: Colors.green,
-                            borderRadius: BorderRadius.circular(50)),
-                        width: 170,
-                        height: 50,
-                        child: Center(
-                          child: Text(
-                            "Place Order",
-                            style: TextStyle(
-                                fontSize: 20,
-                                // fontWeight: FontWeight.bold,
-                                color: Colors.white),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                child: Material(
+                  color: Colors.white,
+                  // elevation: 2.0,
+                  borderRadius: BorderRadius.circular(5),
+                  shadowColor: Colors.green,
+                  child: Column(
+                    children: [
+                      Text(
+                        "Price Detail",
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Container(
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              width: 15,
+                            ),
+                            Text("Price",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                )),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.6558,
+                            ),
+                            Text("+ ${Price}"),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              width: 15,
+                            ),
+                            Text("Discount",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                )),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.58,
+                            ),
+                            Text("- ${Discount}"),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              width: 15,
+                            ),
+                            Text("Delivery Charges",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                )),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.448,
+                            ),
+                            Text("+ ${DeliveryCharges}"),
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Container(
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              width: 15,
+                            ),
+                            Text("Amount Payable",
+                                style: TextStyle(
+                                    fontSize: 15, fontWeight: FontWeight.bold)),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.448,
+                            ),
+                            Text("+ ${AmountPayable}"),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.10),
+              Container(
+                child: Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Container(
+                          child: Column(
+                            children: [
+                              Text(
+                                "Total",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                ),
+                              ),
+                              Text(
+                                "₹ ${AmountPayable}",
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              ),
+                            ],
                           ),
                         ),
                       ),
-                    )
-                  ],
+                      InkWell(
+                        onTap: () {
+                          final id = collectionReference
+                              .doc(_auth.currentUser!.uid)
+                              .collection("OrderList")
+                              .add({
+                            "ProductName": widget.productName,
+                            "ProductPrice": AmountPayable,
+                            "Image": widget.img,
+                            "NurseryName": widget.ShopName,
+                            "DeliveryDate": Delivery,
+                            "OrderDate": OrderDate
+                          });
+
+                          Fluttertoast.showToast(
+                              msg: " Order successful ",
+                              toastLength: Toast.LENGTH_LONG,
+                              gravity: ToastGravity.BOTTOM,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Colors.green,
+                              textColor: Colors.white,
+                              fontSize: 16.0);
+                          Navigator.pushNamed(context, "/Confirm_Order");
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Colors.green,
+                              borderRadius: BorderRadius.circular(50)),
+                          width: 170,
+                          height: 50,
+                          child: Center(
+                            child: Text(
+                              "Place Order",
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  // fontWeight: FontWeight.bold,
+                                  color: Colors.white),
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );

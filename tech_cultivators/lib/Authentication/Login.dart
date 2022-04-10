@@ -42,14 +42,13 @@ class _login_pageState extends State<login_page> {
                 scrollDirection: Axis.vertical,
                 children: <Widget>[
                   SizedBox(
-                    height: 10,
+                    height: 30,
                   ),
                   Container(
                       margin: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-                      child: Lottie.network(
-                          "https://assets7.lottiefiles.com/packages/lf20_xlmz9xwm.json")),
+                      child: Lottie.asset("assets/images/68312-login.json")),
                   SizedBox(
-                    height: 10,
+                    height: 30,
                   ),
 
                   Container(
@@ -96,7 +95,7 @@ class _login_pageState extends State<login_page> {
                     ),
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 30,
                   ),
                   InkWell(
                     child: Text(
@@ -106,12 +105,12 @@ class _login_pageState extends State<login_page> {
                       textAlign: TextAlign.end,
                     ),
                     onTap: () {
-                      Navigator.pushNamed(context, '/password');
+                      Navigator.pushNamed(context, '/Password');
                     },
                   ),
 
                   SizedBox(
-                    height: 15,
+                    height: 20,
                   ),
 
                   InkWell(
@@ -183,7 +182,7 @@ class _login_pageState extends State<login_page> {
                   // ),
 
                   SizedBox(
-                    height: 20,
+                    height: 25,
                   ),
 
                   Padding(

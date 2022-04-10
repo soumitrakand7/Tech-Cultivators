@@ -60,7 +60,7 @@ class _BaazarBhavState extends State<BaazarBhav> {
         backgroundColor: Colors.green,
         elevation: 30,
         title: const Center(
-          child: Text("बाजारभाव"),
+          child: Text("Market Price"),
         ),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(

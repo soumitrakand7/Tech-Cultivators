@@ -72,7 +72,7 @@ class _NewsPageState extends State<NewsPage> {
         backgroundColor: Colors.green,
         title: Container(
           padding: const EdgeInsets.only(right: 1, left: 24),
-          child: const Text("News",
+          child: const Text("Agricultural News",
               style: TextStyle(
                 fontSize: 23,
                 fontWeight: FontWeight.w500,

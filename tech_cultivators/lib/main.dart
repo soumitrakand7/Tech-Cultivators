@@ -10,6 +10,7 @@ import 'package:kisan/Buy/Update.dart';
 import 'package:kisan/Drawer/MY_order.dart';
 import 'package:kisan/Drawer/My_Account.dart';
 import 'package:kisan/Home/home.dart';
+import 'package:kisan/Home/splash_Screen.dart';
 import 'package:kisan/Login/LoginPage.dart';
 import 'package:kisan/Login/intermediatePage.dart';
 import 'package:kisan/News/news.dart';
@@ -38,12 +39,11 @@ class MyApp extends StatelessWidget {
       )),
       initialRoute: '/',
       routes: {
-        '/': (context) => login_page(),
+        '/': (context) => SplashScreen(),
         "/Adress": (context) => Address(),
         "/Confirm_Order": (context) => Place_Order(),
         "/Password": (context) => ResetP(),
         "/MyAccount": (context) => MyAccount(),
-       
         "/Order": (context) => Order(),
         "/Home": (context) => Home(),
         "/register": (context) => registration_page(),
