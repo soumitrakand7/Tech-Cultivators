@@ -10,14 +10,16 @@ class ProductDetailPage extends StatefulWidget {
   int Cost;
   String ShopName;
   String ProductImage;
+  String dis;
 
-  ProductDetailPage(
-      {Key? key,
-      required this.ShopName,
-      required this.productName,
-      required this.ProductImage,
-      required this.Cost})
-      : super(key: key);
+  ProductDetailPage({
+    Key? key,
+    required this.ShopName,
+    required this.productName,
+    required this.ProductImage,
+    required this.Cost,
+    required this.dis,
+  }) : super(key: key);
   @override
   _ProductDetailPageState createState() => _ProductDetailPageState();
 }
@@ -131,7 +133,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
                     FadeInDownBig(
                       delay: Duration(milliseconds: 450),
                       child: Text(
-                        "Nice Product",
+                        widget.dis,
                         style: TextStyle(
                             fontSize: 15, color: black.withOpacity(0.7)),
                       ),
