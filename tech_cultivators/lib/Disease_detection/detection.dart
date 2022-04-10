@@ -1,9 +1,10 @@
-import 'package:firebase_storage/firebase_storage.dart';
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:image_crop/image_crop.dart';
-import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
+
 import 'package:lottie/lottie.dart';
 
 class Detection extends StatefulWidget {
@@ -14,9 +15,9 @@ class Detection extends StatefulWidget {
 }
 
 class _DetectionState extends State<Detection> {
-  XFile? _image;
+  bool diseaseDetected = false;
   File? imageFile;
-
+  String disease = "";
   String uploadCode = DateTime.now().hashCode.toString();
 
   @override
@@ -45,6 +46,7 @@ class _DetectionState extends State<Detection> {
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
                   margin: const EdgeInsets.only(
@@ -79,32 +81,63 @@ class _DetectionState extends State<Detection> {
                     height: 200,
                     width: 200,
                     child: Lottie.network(
-                        "https://assets2.lottiefiles.com/packages/lf20_m1hurwli.json"
-                    ),
+                        "https://assets2.lottiefiles.com/packages/lf20_m1hurwli.json"),
                   ),
                 ),
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.green,
+                    fixedSize: const Size(175, 50),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
                   onPressed: () async {
-                    // Navigator.pop(context);
                     var imagefile = await ImagePicker()
                         .pickImage(source: ImageSource.camera);
                     if (imagefile != null) {
-                      if (mounted) {
-                        setState(() {
-                          _image = imagefile;
-                        });
-                      }
-                      _cropImage(imagefile.path);
-
-                      await FirebaseStorage.instance
-                          .ref("Images/$uploadCode")
-                          .putFile(
-                            File(imagefile.path),
-                          );
+                      List<int> imageBytes =
+                          File(imagefile.path).readAsBytesSync();
+                      String base64Image = base64Encode(imageBytes);
+                      print(base64Image);
+                      var body = json.encode({"data": base64Image});
+                      var temp = {'Content-Type': 'application/json'};
+                      var request = http.post(
+                        Uri.parse(
+                          'https://tech-cultivators-api.herokuapp.com/plant_disease',
+                        ),
+                        body: body,
+                        headers: temp,
+                      );
+                      var response = await request;
+                      print(response.body);
+                      final result = jsonDecode(response.body);
+                      disease = result["disease"];
+                      diseaseDetected = true;
+                      setState(() {});
                     }
                   },
-                  child: const Text("Submit"),
+                  child: const Text(
+                    "Click Image",
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.white,
+                    ),
+                  ),
                 ),
+                const SizedBox(
+                  height: 50,
+                ),
+                diseaseDetected
+                    ? Text(
+                        "Disease Detected: \n $disease",
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 15,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
+                    : const CircularProgressIndicator(),
               ],
             ),
           ),
@@ -112,17 +145,5 @@ class _DetectionState extends State<Detection> {
       ),
     );
   }
-
-  _cropImage(filePath) async {
-    final permissionsGranted = await ImageCrop.requestPermissions();
-    final File? croppedImage = await ImageCropper().cropImage(
-      sourcePath: filePath,
-      maxWidth: 128,
-      maxHeight: 128,
-    );
-    if (croppedImage != null) {
-      imageFile = croppedImage;
-      setState(() {});
-    }
-  }
 }
+

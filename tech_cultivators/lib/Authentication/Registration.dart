@@ -25,12 +25,12 @@ class registration_page extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green,
-        title: Text("Registration",
+        title: const Text("Registration",
             style: TextStyle(
               fontSize: 23,
               fontWeight: FontWeight.bold,
             )),
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(30),
             bottomRight: Radius.circular(30),
@@ -42,14 +42,14 @@ class registration_page extends StatelessWidget {
           child: Column(
               // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                SizedBox(height: 10),
-                Text('Create Your Account',
+                const SizedBox(height: 10),
+                const Text('Create Your Account',
                     style: TextStyle(
                       fontSize: 33,
                       fontWeight: FontWeight.bold,
                     )),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
+                const Padding(
+                  padding: EdgeInsets.all(20.0),
                   child: Text('Create a new account',
                       style: TextStyle(
                         fontSize: 20,
@@ -60,55 +60,55 @@ class registration_page extends StatelessWidget {
                     key: _formKey,
                     child: Column(
                       children: <Widget>[
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         register("Name", "Enter Your Name", false,
-                            Icon(Icons.people), "", _textEditingController1),
-                        SizedBox(height: 15),
+                            const Icon(Icons.people), "", _textEditingController1),
+                        const SizedBox(height: 15),
                         register(
                             "Number",
                             "Enter Your Mobile Number",
                             false,
-                            Icon(Icons.contact_page),
+                            const Icon(Icons.contact_page),
                             "",
                             _textEditingController2),
-                        SizedBox(height: 15),
+                        const SizedBox(height: 15),
                         register(
                             " Email ID",
                             "Enter your Email",
                             false,
-                            Icon(Icons.email_outlined),
+                            const Icon(Icons.email_outlined),
                             email,
                             _textEditingController3),
-                        SizedBox(height: 15),
+                        const SizedBox(height: 15),
                         register("Image", "Paste your image url", false,
-                            Icon(Icons.lock), "", _textEditingController7),
-                        SizedBox(height: 15),
+                            const Icon(Icons.lock), "", _textEditingController7),
+                        const SizedBox(height: 15),
                         register(
                             "Address",
                             "Enter your address",
                             false,
-                            Icon(Icons.location_city),
+                            const Icon(Icons.location_city),
                             "",
                             _textEditingController6),
-                        SizedBox(height: 15),
+                        const SizedBox(height: 15),
                         register(
                             " Password",
                             "Enter Your Password",
                             true,
-                            Icon(Icons.lock),
+                            const Icon(Icons.lock),
                             password,
                             _textEditingController4),
-                        SizedBox(height: 15),
+                        const SizedBox(height: 15),
                         register(
                             "Confirm Password",
                             "Confirmed Your Password",
                             true,
-                            Icon(Icons.lock),
+                            const Icon(Icons.lock),
                             "confirmedp",
                             _textEditingController5),
-                        SizedBox(height: 15),
+                        const SizedBox(height: 15),
                         InkWell(
                           onTap: () async {
                             // Validate returns true if the form is valid, or false otherwise.
@@ -127,7 +127,7 @@ class registration_page extends StatelessWidget {
                                       email: _textEditingController3.text,
                                       password: _textEditingController4.text);
                               SC(BuildContext, context);
-                              await Future.delayed(Duration(seconds: 4));
+                              await Future.delayed(const Duration(seconds: 4));
                               Navigator.pushNamed(context, '/');
                             } on FirebaseAuthException catch (e) {
                               if (e.code == 'weak-password') {
@@ -158,7 +158,7 @@ class registration_page extends StatelessWidget {
                             child: Container(
                               height: 60,
                               alignment: Alignment.center,
-                              child: Text(
+                              child: const Text(
                                 "Sign Up",
                                 style: TextStyle(
                                     color: Colors.white,
@@ -197,7 +197,7 @@ Widget register(String labelText, String hintText, bool x, Icon myicon,
       },
       obscureText: x,
       controller: z,
-      style: TextStyle(fontSize: 15),
+      style: const TextStyle(fontSize: 15),
       validator: (value) {
         if (value == null || value.isEmpty) {
           return "please Enter some text";
@@ -205,19 +205,19 @@ Widget register(String labelText, String hintText, bool x, Icon myicon,
       },
       decoration: InputDecoration(
           labelText: labelText,
-          labelStyle: TextStyle(color: Colors.black),
+          labelStyle: const TextStyle(color: Colors.black),
           focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(50),
-              borderSide: BorderSide(color: Colors.amber, width: 2)),
+              borderSide: const BorderSide(color: Colors.amber, width: 2)),
           prefixIcon: myicon,
           hintText: hintText,
-          contentPadding: EdgeInsets.symmetric(horizontal: 20)),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 20)),
     ),
   );
 }
 
 void WP(BuildContext, Context) {
-  var alertDialog = AlertDialog(
+  var alertDialog = const AlertDialog(
     title: Text("Please Enter Strong Password"),
     // content: Text("Now you can Buy a product")
   );
@@ -230,7 +230,7 @@ void WP(BuildContext, Context) {
 }
 
 void EU(BuildContext, Context) {
-  var alertDialog = AlertDialog(
+  var alertDialog = const AlertDialog(
     title: Text("The account already exists for that email."),
     content: Text("Please enter new Email ID"),
     // content: Text("Now you can Buy a product")
@@ -244,7 +244,7 @@ void EU(BuildContext, Context) {
 }
 
 void SC(BuildContext, Context) {
-  var alertDialog = AlertDialog(
+  var alertDialog = const AlertDialog(
     title: Text("You have successfuly registered on Agventure"),
     content: Text("Please Sign In"),
     // content: Text("Now you can Buy a product")
