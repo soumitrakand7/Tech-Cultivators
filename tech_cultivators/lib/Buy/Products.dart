@@ -39,6 +39,7 @@ class productpage extends StatelessWidget {
                                     ProductImage: Value[index]["ProductImage"],
                                     Cost: Value[index]["Cost"],
                                     productName: Value[index]["Product Name"],
+                                    dis: Value[index]["dis"],
                                     ShopName: Shop,
                                   ),
                                 ),

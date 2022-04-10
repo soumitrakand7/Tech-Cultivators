@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:kisan/Sell/next_add_product.dart';
+import 'package:lottie/lottie.dart';
 
 class Add_Product extends StatefulWidget {
   const Add_Product({Key? key}) : super(key: key);
@@ -49,7 +50,7 @@ class _Add_ProductState extends State<Add_Product> {
       appBar: AppBar(
         backgroundColor: Colors.green,
         title: Container(
-          padding: EdgeInsets.only(right: 1, left: 0),
+          padding: EdgeInsets.only(right: 5, left: 0),
           child: Text("Add Products",
               style: TextStyle(
                 fontSize: 26,
@@ -71,6 +72,8 @@ class _Add_ProductState extends State<Add_Product> {
             print(map.length);
             return ListView(
               children: [
+                LottieBuilder.asset(
+                    "assets/images/93270-password-lock-animation.json"),
                 SizedBox(
                   height: 20,
                 ),
@@ -192,6 +195,9 @@ class _Add_ProductState extends State<Add_Product> {
                     )
                   ],
                 )),
+                SizedBox(
+                  height: 20,
+                ),
               ],
             );
           }),

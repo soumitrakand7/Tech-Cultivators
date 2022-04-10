@@ -12,44 +12,6 @@ class WeatherPage extends StatefulWidget {
 }
 
 class _WeatherPageState extends State<WeatherPage> {
-  List<String> City = [
-    'Ahmednagar',
-    'Akola',
-    'Amravati',
-    'Aurangabad',
-    'Bhandara',
-    'Beed',
-    'Buldhana',
-    'Chandrapur',
-    'Dhule',
-    'Gadchiroli',
-    'Gondia',
-    'Hingoli',
-    'Jalgaon',
-    'Jalna',
-    'Kolhapur',
-    'Latur',
-    'Mumbai City',
-    'Mumbai suburban',
-    'Nandurbar',
-    'Nanded',
-    'Nagpur',
-    'Nashik',
-    'Osmanabad',
-    'Parbhani',
-    'Pune',
-    'Raigad',
-    'Ratnagiri',
-    'Sindhudurg',
-    'Sangli',
-    'Solapur',
-    'Satara',
-    'Thane',
-    'Wardha',
-    'Washim',
-    'Yavatmal',
-  ];
-
   bool isLoading = false;
   String? myCity;
   double? tempKelvin;
@@ -62,71 +24,27 @@ class _WeatherPageState extends State<WeatherPage> {
   int? visibility;
   int? pressure;
   final _cityTextController = TextEditingController();
-  var SelectedCity;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.green,
-        title: Container(
-          padding: const EdgeInsets.only(right: 1, left: 24),
-          child: const Text("Select City",
-              style: TextStyle(
-                fontSize: 23,
-                fontWeight: FontWeight.w500,
-              )),
-        ),
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(30),
-            bottomRight: Radius.circular(30),
-          ),
-        ),
-      ),
       body: Center(
         child: isLoading
             ? const CircularProgressIndicator()
             : Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    height: 100,
-                    width: 300,
-                    child: DropdownButton(
-                      hint: Text("Select your Shop",
-                          style: TextStyle(fontSize: 18)),
-                      value: SelectedCity,
-                      dropdownColor: Color.fromARGB(255, 197, 243, 206),
-                      elevation: 20,
-                      isExpanded: true,
-                      style: TextStyle(fontSize: 17, color: Colors.black),
-                      icon: Icon(
-                        Icons.arrow_drop_down_circle_sharp,
-                        size: 30,
-                      ),
-                      onChanged: (newValueSelected) {
-                        setState(() {
-                          SelectedCity = newValueSelected.toString();
-                        });
-                      },
-                      items: City.map((Nursary) {
-                        return DropdownMenuItem(
-                          value: Nursary,
-                          child: Text(
-                            Nursary,
-                            style: TextStyle(color: Colors.black),
-                          ),
-                        );
-                      }).toList(),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 50),
+                    child: SizedBox(
+                      width: 150,
+                      child: TextField(
+                          controller: _cityTextController,
+                          decoration: const InputDecoration(labelText: 'City'),
+                          textAlign: TextAlign.center),
                     ),
                   ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  MaterialButton(
-                    height: 50,
-                    minWidth: 150,
+                  ElevatedButton(
                     onPressed: () {
                       setState(() {
                         isLoading = true;
@@ -140,7 +58,7 @@ class _WeatherPageState extends State<WeatherPage> {
                                   Location: _cityTextController.toString(),
                                   humidity: humidity,
                                   icon: icon,
-                                  myCity: SelectedCity,
+                                  myCity: myCity,
                                   pressure: pressure,
                                   speed: speed,
                                   sunrise: sunrise,
@@ -153,17 +71,7 @@ class _WeatherPageState extends State<WeatherPage> {
                             )
                           : CircularProgressIndicator();
                     },
-                    color: Colors.green,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50),
-                    ),
-                    child: const Text(
-                      "Search City",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                          fontSize: 18),
-                    ),
+                    child: const Text('Search'),
                   ),
                 ],
               ),
