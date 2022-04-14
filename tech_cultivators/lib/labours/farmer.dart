@@ -34,15 +34,17 @@ class _FarmersState extends State<Farmers> {
                               onTap: () {
                                 print(labourList);
                                 Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => FarmerDetail(
-                                              map['Name'],
-                                              map['count'],
-                                              map['money'],
-                                              map['MObile No'],
-                                              map['Address'],
-                                            )));
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => FarmerDetail(
+                                      name: map['Name'],
+                                      count: map['count'],
+                                      money: map['money'],
+                                      mobNo: map['MObile No'],
+                                      address: map['Address'],
+                                    ),
+                                  ),
+                                );
                               },
                               child: Column(children: [
                                 Container(
