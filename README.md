@@ -28,8 +28,6 @@ Kisaan also provides live Market prices for crops and has the unique feature of 
 ## GitHub repo link:
   [**https://github.com/soumitrakand7/Tech-Cultivators**](https://github.com/soumitrakand7/Tech-Cultivators)
 
-## Drive link:
-  [**https://drive.google.com/drive/folders/1fQFl0fi5t-57yV3kXluqpxRlxzPj2TXd**](https://drive.google.com/drive/folders/1fQFl0fi5t-57yV3kXluqpxRlxzPj2TXd)
 
 ## Apk Link:
  [**https://drive.google.com/file/d/1kKt7X9rk8KjMpgTbB-9FHG68l110-tOX/view?usp=sharing**](https://drive.google.com/file/d/1kKt7X9rk8KjMpgTbB-9FHG68l110-tOX/view?usp=sharing)
